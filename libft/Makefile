@@ -15,7 +15,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
-	rm -f *.o
 
 $(OBJ): $(SRC)
 	$(CC) $(CFLAGS) -c $(SRC)

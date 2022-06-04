@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/01 20:26:17 by tdehne           ###   ########.fr       */
+/*   Created: 2022/06/01 20:50:38 by tdehne            #+#    #+#             */
+/*   Updated: 2022/06/01 20:58:43 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,42 +71,19 @@ void	sort_stacks(t_list **head_a, t_list **head_b, t_list *prev_smallest, int *c
 	sort_stacks(head_a, head_b, smallest, counter);
 }
 
-void	push_swap(t_list **head_a, t_list **head_b, t_list *prev_smallest, int *counter)
+t_chosen	*pushable(t_list **head, t_list	*prev_smallest)
 {
-	sort_stacks(head_a, head_b, prev_smallest, counter);
-	while (*head_b)
-	{
-		push_a(head_a, head_b);
-		(*counter)++;
-	}
-	printf("counter = %d\n", *counter);
-}
+	t_chosen	*chosen;
+	int			i;
 
-int	main(int argc, char **argv)
-{
-	t_list			*head_a;
-	t_list			*head_b;
-	t_list			*smallest;
-	int				counter;
-
-	head_a = create_stack(argc, argv);
-	head_b = NULL;
-	smallest = NULL;
-	counter = 0;
-	//swap(&head_a);
-	//shift_up(&head_a);
-	//shift_down(&head_a);
-	//push_b(&head_a, &head_b);
-	push_swap(&head_a, &head_b, smallest, &counter);
-	while (head_a)
+	chosen = (t_chosen *)malloc(sizeof(t_chosen) * 5);
+	i = 5;
+	while (i < 5)
 	{
-		printf("%d\n", head_a->content);
-		head_a = head_a->next;
+		prev_smallest = get_next_smallest_node(*head, prev_smallest);
+		chosen[i].pos = find_node_spot(*head, prev_smallest);
+		chosen[i].node = prev_smallest;
+		i++;
 	}
-	while (head_b)
-	{
-		printf("stack b %d\n", head_b->content);
-		head_b = head_b->next;
-	}
-	return (0);
+	return (chosen);
 }
