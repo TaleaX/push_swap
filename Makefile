@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS=-Wall -Werror -Wextra
 INC_LIB=-Iinlcude/ -I$(LIB_DIR)/
 INC_SRC=-Iinlcude/ -I$(INC_DIR)/
-SRC_NAME=push_swap.c create_stack.c operations.c list_utils.c
+SRC_NAME=push_swap.c create_stack.c operations.c list_utils.c sort.c arr_utils.c radix_sort.c visual.c opt_sort.c checks.c
 OBJ_NAME=$(SRC_NAME:.c=.o)
 OBJ=$(addprefix $(OBJ_DIR),$(OBJ_NAME))
 SRC=$(addprefix $(SRC_DIR),$(SRC_NAME))

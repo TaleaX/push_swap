@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/01 20:50:23 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/06/09 12:22:18 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,61 @@
 #include <stdio.h>
 #include "libft.h"
 
-typedef struct s_chosen
-{
-	int		pos;
-	t_list	*node;
-} t_chosen;
+typedef enum op {
+	PUSH_A = 1,
+	PUSH_B,
+	SWAP_A,
+	SWAP_B,
+	SHIFT_UP_A,
+	SHIFT_UP_B,
+	SHIFT_DOWN_A,
+	SHIFT_DOWN_B,
+	SHIFT_UP_BOTH,
+	SHIFT_DOWN_BOTH,
+	SWAP_BOTH
 
-t_list	*create_stack(int argc, char **argv);
+} t_op;
 
-void	shift_up(t_list **head);
-void	shift_down(t_list **head);
-void	swap(t_list **head);
+typedef enum min_op {
+	SWAP = 1,
+	SHIFT_UP,
+	SHIFT_DOWN,
+	PUSH_B,
+	PUSH_A
 
+} t_min_op;
+
+typedef void (*operation) (t_list **head_a, t_list **head_b);
+
+t_list	*create_stack_lst(int argc, char **argv);
+int		*create_stack_arr(int argc, char **argv, int stack_a);
+
+void	shift_up(t_list **head, t_list **head_b);
+void	shift_down(t_list **head, t_list **head_b);
+void	swap(t_list **head, t_list **head_b);
+void	push_b(t_list **head_a, t_list **head_b);
+void	push_a(t_list **head_a, t_list **head_b);
+
+t_list	*lst_new(int content, int selected);
 void	lst_rm(t_list **head, t_list *lst);
 t_list	*lst_getlast(t_list *lst);
 void	lst_add_front(t_list **lst, t_list *new);
 void	lst_add_back(t_list **lst, t_list *new);
-void	push_b(t_list **head_a, t_list **head_b);
-void	push_a(t_list **head_a, t_list **head_b);
 int		lst_size(t_list *lst);
 int		find_node_spot(t_list *head, t_list *to_find);
+int		find_node_by_content(t_list *head, int content);
 
+void	shift_up_arr(int *stack, int len);
+void	shift_down_arr(int *stack, int len);
+void	swap_arr(int *stack);
+
+void	sort_stacks(t_list **head_a, t_list **head_b, t_list *prev_smallest, int *counter);
+
+void	rsort(int a[], int n, t_list **stack_a, t_list **stack_b, int *counter);
+
+void	print_stack(t_list *head_a, t_list *head_b, t_op OP);
+
+void	opt_sort(t_list **head_a, t_list **head_b, operation operation_arr[5], int start_len, t_min_op *OP);
+
+int		is_sorted(t_list *head);
 #endif

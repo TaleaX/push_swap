@@ -6,11 +6,24 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 11:12:58 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/01 20:23:31 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/06/06 17:02:49 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_list	*lst_new(int content, int selected)
+{
+	t_list	*lst;
+
+	lst = (t_list *) malloc(sizeof(t_list));
+	if (!lst)
+		return (NULL);
+	lst->content = content;
+	lst->selected = selected;
+	lst->next = NULL;
+	return (lst);
+}
 
 void	lst_add_back(t_list **lst, t_list *new)
 {
@@ -88,3 +101,19 @@ int	find_node_spot(t_list *head, t_list *to_find)
 	}
 	return (counter);
 }
+
+int	find_node_by_content(t_list *head, int content)
+{
+	int	counter;
+
+	counter = 0;
+	while (head)
+	{
+		if (head->content == content)
+			break;
+		counter++;
+		head = head->next;
+	}
+	return (counter);
+}
+
