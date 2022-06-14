@@ -6,13 +6,13 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:18:28 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/09 11:55:19 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/06/13 12:10:03 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_list **head, t_list **head_b)
+void	swap(t_list **head)
 {
 	t_list	*tmp_next_next;
 	t_list	*tmp_next;
@@ -26,7 +26,7 @@ void	swap(t_list **head, t_list **head_b)
 	*head = tmp_next;
 }
 
-void	shift_up(t_list **head, t_list **head_b)
+void	shift_up(t_list **head)
 {
 	t_list *first;
 
@@ -37,7 +37,7 @@ void	shift_up(t_list **head, t_list **head_b)
 	
 }
 
-void	shift_down(t_list **head, t_list **head_b)
+void	shift_down(t_list **head)
 {
 	t_list *last;
 

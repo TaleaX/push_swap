@@ -1,8 +1,8 @@
 CC=gcc
-CFLAGS=-Wall -Werror -Wextra
+CFLAGS=-Wall -Werror -Wextra -g
 INC_LIB=-Iinlcude/ -I$(LIB_DIR)/
 INC_SRC=-Iinlcude/ -I$(INC_DIR)/
-SRC_NAME=push_swap.c create_stack.c operations.c list_utils.c sort.c arr_utils.c radix_sort.c visual.c opt_sort.c checks.c
+SRC_NAME=push_swap.c create_stack.c operations.c list_utils.c sort.c arr_utils.c radix_sort.c visual.c checks.c
 OBJ_NAME=$(SRC_NAME:.c=.o)
 OBJ=$(addprefix $(OBJ_DIR),$(OBJ_NAME))
 SRC=$(addprefix $(SRC_DIR),$(SRC_NAME))
@@ -16,7 +16,7 @@ all: $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@gcc $(FLAGS) -o $@ -c $^ $(INC_LIB)
+	@gcc $(CFLAGS) -o $@ -c $^ $(INC_LIB)
 #$(OBJ_DIR)%.o: $(SRC_DIR)%.c
 #@gcc $(FLAGS) -o $@ -c $^ $(INC_LIB)
 #@echo "##### Creating" [ $@ ] " #####"

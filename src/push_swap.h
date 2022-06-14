@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/09 12:22:18 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/06/13 16:47:11 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ typedef enum min_op {
 	SWAP = 1,
 	SHIFT_UP,
 	SHIFT_DOWN,
-	PUSH_B,
-	PUSH_A
 
 } t_min_op;
 
@@ -45,9 +43,9 @@ typedef void (*operation) (t_list **head_a, t_list **head_b);
 t_list	*create_stack_lst(int argc, char **argv);
 int		*create_stack_arr(int argc, char **argv, int stack_a);
 
-void	shift_up(t_list **head, t_list **head_b);
-void	shift_down(t_list **head, t_list **head_b);
-void	swap(t_list **head, t_list **head_b);
+void	shift_up(t_list **head);
+void	shift_down(t_list **head);
+void	swap(t_list **head);
 void	push_b(t_list **head_a, t_list **head_b);
 void	push_a(t_list **head_a, t_list **head_b);
 

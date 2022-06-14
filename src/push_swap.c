@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/09 12:00:16 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/06/13 16:51:58 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,15 @@ int	main(int argc, char **argv)
 	t_list			*head_b;
 	t_list			*smallest;
 	int				counter;
-	int				*stack;
-	int				i;
-	operation		operation_arr[5] = {swap, shift_up, shift_down, push_b, push_a};
+	//int				*stack;
+	//int				i;
+	//operation		operation_arr[5] = {swap, shift_up, shift_down, push_b, push_a};
 
 	head_a = create_stack_lst(argc, argv);
 	head_b = NULL;
 	counter = 0;
 	smallest = NULL;
-	opt_sort(&head_a, &head_b, operation_arr);
-	//push_swap(&head_a, &head_b, smallest, &counter);
+	push_swap(&head_a, &head_b, smallest, &counter);
 	while (head_a)
 	{
 		printf("%d\n", head_a->content);
