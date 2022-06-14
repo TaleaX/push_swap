@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/13 16:51:58 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/06/14 13:32:12 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ int	main(int argc, char **argv)
 	head_b = NULL;
 	counter = 0;
 	smallest = NULL;
-	push_swap(&head_a, &head_b, smallest, &counter);
+	//push_swap(&head_a, &head_b, smallest, &counter);
 	while (head_a)
 	{
-		printf("%d\n", head_a->content);
+		printf("content = %d index = %d\n", head_a->content, head_a->index);
 		head_a = head_a->next;
 	}
 	//printf("counter = %d\n", counter);

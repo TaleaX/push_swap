@@ -6,13 +6,13 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 20:50:38 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/08 18:21:04 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/06/14 13:30:58 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*get_smallest(t_list *head_a)
+static t_list	*get_smallest(t_list *head_a)
 {
 	t_list	*smallest;
 
@@ -26,7 +26,7 @@ t_list	*get_smallest(t_list *head_a)
 	return (smallest);
 }
 
-t_list	*get_next_smallest_node(t_list *head_a, t_list *prev_smallest)
+static t_list	*get_next_smallest_node(t_list *head_a, t_list *prev_smallest)
 {
 	if (!prev_smallest)
 		return (get_smallest(head_a));
@@ -46,7 +46,7 @@ t_list	*get_next_smallest_node(t_list *head_a, t_list *prev_smallest)
 		head_a = head_a->next;
 	}
 	return (prev_smallest);
-}
+}/*
 
 void	sort_stacks(t_list **head_a, t_list **head_b, t_list *prev_smallest, int *counter)
 {
@@ -76,9 +76,9 @@ void	sort_stacks(t_list **head_a, t_list **head_b, t_list *prev_smallest, int *c
 	print_stack(*head_a, *head_b, PUSH_B);
 	(*counter)++;
 	sort_stacks(head_a, head_b, smallest, counter);
-}
+}*/
 
-/*int	smallest_dist_head(t_list *head)
+int	smallest_dist_head(t_list *head)
 {
 	int	counter;
 
@@ -144,7 +144,7 @@ void	sort_stacks(t_list **head_a, t_list **head_b, t_list *prev_smallest, int *c
 	if (lst_size(*head_a) == 1)
 		return ;
 	size = lst_size(*head_a);
-	//smallest = get_next_smallest_node(*head_a, prev_smallest);
+	smallest = get_next_smallest_node(*head_a, prev_smallest);
 	prev_smallest = select_nodes(head_a, prev_smallest, 3);
 	//printf("%p\n", smallest);
 	while (!(*head_a)->selected)
@@ -159,4 +159,4 @@ void	sort_stacks(t_list **head_a, t_list **head_b, t_list *prev_smallest, int *c
 	sort_b(head_b);
 	(*counter)++;
 	sort_stacks(head_a, head_b, smallest, counter);
-}*/
+}

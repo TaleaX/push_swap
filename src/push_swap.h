@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/13 16:47:11 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/06/14 13:15:30 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	swap(t_list **head);
 void	push_b(t_list **head_a, t_list **head_b);
 void	push_a(t_list **head_a, t_list **head_b);
 
-t_list	*lst_new(int content, int selected);
+t_list	*lst_new(int content, int selected, int index);
 void	lst_rm(t_list **head, t_list *lst);
 t_list	*lst_getlast(t_list *lst);
 void	lst_add_front(t_list **lst, t_list *new);

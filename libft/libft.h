@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 14:06:22 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/06 17:47:24 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/06/14 13:14:18 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ typedef struct s_list
 {
 	int				content;
 	int				selected;
+	int				index;
 	struct s_list	*next;
 }	t_list;
 

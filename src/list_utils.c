@@ -6,13 +6,13 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 11:12:58 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/06 17:02:49 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/06/14 13:16:16 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*lst_new(int content, int selected)
+t_list	*lst_new(int content, int selected, int index)
 {
 	t_list	*lst;
 
@@ -21,6 +21,7 @@ t_list	*lst_new(int content, int selected)
 		return (NULL);
 	lst->content = content;
 	lst->selected = selected;
+	lst->index = index;
 	lst->next = NULL;
 	return (lst);
 }
