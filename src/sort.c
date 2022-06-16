@@ -6,7 +6,11 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 20:50:38 by tdehne            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/06/14 16:58:42 by tdehne           ###   ########.fr       */
+=======
+/*   Updated: 2022/06/16 14:19:38 by tdehne           ###   ########.fr       */
+>>>>>>> 122c7c74c43c716faec35bb63d9b9379631fe572
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +48,7 @@ void	sort_stacks(t_list **head_a, t_list **head_b, t_list *prev_smallest, int *c
 	sort_stacks(head_a, head_b, smallest, counter);
 }*/
 
-int	smallest_dist_head(t_list *head)
+static int	smallest_dist_head(t_list *head)
 {
 	int	counter;
 
@@ -57,7 +61,7 @@ int	smallest_dist_head(t_list *head)
 	return (counter);
 }
 
-int	smallest_dist_tail(t_list *head)
+static int	smallest_dist_tail(t_list *head)
 {
 	int	counter;
 	int	last_sel_i;

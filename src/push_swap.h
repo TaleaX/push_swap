@@ -6,7 +6,11 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/06/14 16:57:10 by tdehne           ###   ########.fr       */
+=======
+/*   Updated: 2022/06/16 14:35:29 by tdehne           ###   ########.fr       */
+>>>>>>> 122c7c74c43c716faec35bb63d9b9379631fe572
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +61,7 @@ void	lst_add_back(t_list **lst, t_list *new);
 int		lst_size(t_list *lst);
 int		find_node_spot(t_list *head, t_list *to_find);
 int		find_node_by_content(t_list *head, int content);
+t_list	*find_node_by_spot(t_list *head, int spot);
 
 void	shift_up_arr(int *stack, int len);
 void	shift_down_arr(int *stack, int len);
@@ -67,8 +72,6 @@ void	sort_stacks(t_list **head_a, t_list **head_b, t_list *prev_smallest, int *c
 void	rsort(int a[], int n, t_list **stack_a, t_list **stack_b, int *counter);
 
 void	print_stack(t_list *head_a, t_list *head_b, t_op OP);
-
-void	opt_sort(t_list **head_a, t_list **head_b, operation operation_arr[5], int start_len, t_min_op *OP);
 
 int		is_sorted(t_list *head);
 
