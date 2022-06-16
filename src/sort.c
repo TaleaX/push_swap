@@ -6,47 +6,13 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 20:50:38 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/14 13:30:58 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/06/14 16:58:42 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_list	*get_smallest(t_list *head_a)
-{
-	t_list	*smallest;
-
-	smallest = head_a;
-	while (head_a)
-	{
-		if (smallest->content > head_a->content)
-			smallest = head_a;
-		head_a = head_a->next;
-	}
-	return (smallest);
-}
-
-static t_list	*get_next_smallest_node(t_list *head_a, t_list *prev_smallest)
-{
-	if (!prev_smallest)
-		return (get_smallest(head_a));
-	while (head_a)
-	{
-		if (head_a->content > prev_smallest->content)
-		{
-			prev_smallest = head_a;
-			break ;
-		}
-		head_a = head_a->next;
-	}
-	while (head_a)
-	{
-		if (prev_smallest->content > head_a->content)
-			prev_smallest = head_a;
-		head_a = head_a->next;
-	}
-	return (prev_smallest);
-}/*
+/*
 
 void	sort_stacks(t_list **head_a, t_list **head_b, t_list *prev_smallest, int *counter)
 {
@@ -139,11 +105,11 @@ void	sort_b(t_list **head_b)
 void	sort_stacks(t_list **head_a, t_list **head_b, t_list *prev_smallest, int *counter)
 {
 	t_list	*smallest;
-	int		size;
+	//int		size;
 
 	if (lst_size(*head_a) == 1)
 		return ;
-	size = lst_size(*head_a);
+	//size = lst_size(*head_a);
 	smallest = get_next_smallest_node(*head_a, prev_smallest);
 	prev_smallest = select_nodes(head_a, prev_smallest, 3);
 	//printf("%p\n", smallest);

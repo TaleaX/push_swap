@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/14 13:15:30 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/06/14 16:57:10 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,8 @@ void	print_stack(t_list *head_a, t_list *head_b, t_op OP);
 void	opt_sort(t_list **head_a, t_list **head_b, operation operation_arr[5], int start_len, t_min_op *OP);
 
 int		is_sorted(t_list *head);
+
+t_list	*get_greatest(t_list *head_a);
+t_list	*get_smallest(t_list *head_a);
+t_list	*get_next_smallest_node(t_list *head_a, t_list *prev_smallest);
 #endif
