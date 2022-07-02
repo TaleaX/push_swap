@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:29 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/14 17:40:58 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/06/27 15:28:07 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,28 @@ void add_index(t_list *head)
 	}
 }
 
-t_list	*create_stack_lst(int argc, char **argv)
+t_data	create_stack_lst(int argc, char **argv)
 {
 	t_list	*stack;
-	t_list	*head;
+	t_list	*head_a;
+	t_list	*head_b;
+	t_data	data;
 	int		num;
 
-	head = NULL;
+	head_a = NULL;
+	head_b = NULL;
+	data.head_a = &head_a;
+	data.head_b = &head_b;
+	data.size_a = 0;
 	while (argc-- > 1)
 	{
 		num = ft_atoi(*(argv + argc));
 		stack = lst_new(num, 0, -1);
-		lst_add_front(&head, stack);
+		lst_add_front(data.head_a, stack);
 	}
-	add_index(head);
-	return (head);
+	add_index(*data.head_a);
+	data.size_a = lst_size(*data.head_a);
+	return (data);
 }
 
 /*int	*create_stack_arr(int argc, char **argv)

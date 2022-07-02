@@ -6,11 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/06/14 16:57:10 by tdehne           ###   ########.fr       */
-=======
-/*   Updated: 2022/06/16 14:35:29 by tdehne           ###   ########.fr       */
->>>>>>> 122c7c74c43c716faec35bb63d9b9379631fe572
+/*   Updated: 2022/06/27 15:27:25 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +15,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "libft.h"
+# define GROUPS 5
 
 typedef enum op {
 	PUSH_A = 1,
@@ -36,15 +33,22 @@ typedef enum op {
 } t_op;
 
 typedef enum min_op {
-	SWAP = 1,
+	SWAP,
 	SHIFT_UP,
 	SHIFT_DOWN,
 
 } t_min_op;
 
-typedef void (*operation) (t_list **head_a, t_list **head_b);
+typedef void (*operation) (t_list **head);
 
-t_list	*create_stack_lst(int argc, char **argv);
+typedef struct s_data {
+	t_list	**head_a;
+	t_list	**head_b;
+	int		size_a;
+	int		size_b;
+}	t_data;
+
+t_data	create_stack_lst(int argc, char **argv);
 int		*create_stack_arr(int argc, char **argv, int stack_a);
 
 void	shift_up(t_list **head);
@@ -61,15 +65,8 @@ void	lst_add_back(t_list **lst, t_list *new);
 int		lst_size(t_list *lst);
 int		find_node_spot(t_list *head, t_list *to_find);
 int		find_node_by_content(t_list *head, int content);
-t_list	*find_node_by_spot(t_list *head, int spot);
 
-void	shift_up_arr(int *stack, int len);
-void	shift_down_arr(int *stack, int len);
-void	swap_arr(int *stack);
-
-void	sort_stacks(t_list **head_a, t_list **head_b, t_list *prev_smallest, int *counter);
-
-void	rsort(int a[], int n, t_list **stack_a, t_list **stack_b, int *counter);
+void	sort_big(t_data data, operation operations[3], int max_index);
 
 void	print_stack(t_list *head_a, t_list *head_b, t_op OP);
 
@@ -78,4 +75,11 @@ int		is_sorted(t_list *head);
 t_list	*get_greatest(t_list *head_a);
 t_list	*get_smallest(t_list *head_a);
 t_list	*get_next_smallest_node(t_list *head_a, t_list *prev_smallest);
+int		get_greatest_num(int *arr, int len);
+
+int		smallest_dist_head(t_list *head, int max_index);
+int		smallest_dist_tail(t_list *head, int max_index);
+
+int		is_rev_sorted(t_list *head);
+
 #endif

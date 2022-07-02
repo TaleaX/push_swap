@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 13:32:15 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/16 15:00:48 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/06/26 10:19:58 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,20 @@ void decide_for_seq(t_list	*stack)
 	}
 }
 
+void	decide_seq(t_list *stack, int index[])
+{
+
+}
+
 void	lis(t_list *stack, int len)
 {
 		t_list	*tmp;
 		t_list	*tmp_tmp;
-		int		save_seq[len];
 		int		maybe_seq[len];
 		int		prev;
 		int		counter;
 		int		i;
+		int		greatest;
 	
 		if (!stack)
 			return ;
@@ -108,13 +113,13 @@ void	lis(t_list *stack, int len)
 			maybe_seq[i++] = counter;
 			tmp = tmp->next;
 		}
+		maybe_seq[i] = -1;
 		i = 0;
-		prev = 0;
+		greatest = get_greatest_num(maybe_seq, -1);
 		while (i < len)
 		{
-			if (prev < maybe_seq[i])
-			{
-				prev = maybe_seq[i++];
-			}
+			if (greatest == maybe_seq[i++])
+				
 		}
+		decide_best_seq(stack, maybe_seq);
 }
