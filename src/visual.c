@@ -6,14 +6,49 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 12:17:11 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/27 15:12:50 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/03 12:43:00 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int get_digits(int num)
+{
+	int	counter;
+	counter = 0;
+
+	while ((num = num / 10))
+		counter++;
+	return (counter + 1);
+}
+
+int	highest_digit(t_list *head_a)
+{
+	int	max;
+
+	if (!head_a)
+		return (0);
+	max = head_a->content;
+	while (head_a)
+	{
+		if (head_a->content > max)
+			max = head_a->content;
+		head_a = head_a->next;
+	}
+	return (get_digits(max));
+}
+
 void	print_stack(t_list *head_a, t_list *head_b, t_op OP)
 {
+	t_list	*tmp_a;
+	t_list	*tmp_b;
+	int		max_digits;
+	int		tmp_max_digits;
+
+	tmp_a = head_a;
+	tmp_b = head_b;
+	max_digits = highest_digit(head_a);
+	tmp_max_digits = max_digits;
 	printf("\n-------------------------------\n");
 	printf("Exec: ");
 	if (OP == PUSH_A)
@@ -42,20 +77,37 @@ void	print_stack(t_list *head_a, t_list *head_b, t_op OP)
 		printf("rrr\n");
 	else if (!OP)
 		printf("First Print\n");
-	while (head_a || head_b)
+	while (tmp_a || tmp_b)
 	{
-		if (head_a)
+		if (tmp_a)
 		{
-			printf("%d ", head_a->content);
-			head_a = head_a->next;
+			printf("%d  index = %d", tmp_a->content, tmp_a->index);
+			//printf("%d  ", tmp_a->content);
+			while (max_digits-- > get_digits(tmp_a->content))
+				printf(" ");
+			tmp_a = tmp_a->next;
 		}
-		if (head_b)
+		else
 		{
-			printf("%d ", head_b->content);
-			head_b = head_b->next;
+			while (max_digits--)
+				printf(" ");
+			printf("  ");
+		}
+		if (tmp_b)
+		{
+			//printf("%d", tmp_b->content);
+			printf("%d index = %d", tmp_b->content, tmp_b->index);
+			tmp_b = tmp_b->next;
 		}
 		printf("\n");
-		
+		max_digits = tmp_max_digits;
 	}
-	printf("_ _\na b\n");
+	printf("_ ");
+	while (max_digits-- > 1)
+		printf(" ");
+	printf("_\na ");
+	max_digits = tmp_max_digits;
+	while (max_digits-- > 1)
+		printf(" ");
+	printf("b\n");
 }

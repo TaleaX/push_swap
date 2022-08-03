@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:29 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/27 15:28:07 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/02 09:41:56 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,49 +38,19 @@ t_data	create_stack_lst(int argc, char **argv)
 
 	head_a = NULL;
 	head_b = NULL;
-	data.head_a = &head_a;
-	data.head_b = &head_b;
+	data.head_a = head_a;
+	data.head_b = head_b;
 	data.size_a = 0;
 	while (argc-- > 1)
 	{
+		if (**(argv + argc) < '0' || **(argv + argc) > '9')
+			continue ;
 		num = ft_atoi(*(argv + argc));
 		stack = lst_new(num, 0, -1);
-		lst_add_front(data.head_a, stack);
+		lst_add_front(&data.head_a, stack);
 	}
-	add_index(*data.head_a);
-	data.size_a = lst_size(*data.head_a);
+	add_index(data.head_a);
+	data.size_a = lst_size(data.head_a);
+	data.size_b = 0;
 	return (data);
-}
-
-/*int	*create_stack_arr(int argc, char **argv)
-{
-	int	*stack;
-	int	num;
-	int	i;
-
-	stack = (int *)malloc(sizeof(int) * (argc - 1));
-	i = 0;
-	while (i < argc - 1)
-	{
-		stack[i] = ft_atoi(*(argv + i + 1));
-		i++;
-	}
-	return (stack);
-}*/
-
-int	*create_stack_arr(int argc, char **argv, int stack_a)
-{
-	int	*stack;
-	int	num;
-
-	stack = (int *)malloc(sizeof(int) * argc - 1);
-	if (stack_a)
-	{
-		while (argc-- > 1)
-		{
-			num = ft_atoi(*(argv + argc));
-			stack[argc - 1] = num;
-		}
-	}
-	return (stack);
 }

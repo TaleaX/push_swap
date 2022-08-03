@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/27 15:20:45 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/03 11:50:39 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,48 +33,23 @@ int	main(int argc, char **argv)
 	//int				counter;
 	//int				*stack;
 	//int				i;
-	t_data			data;
+	t_data	data;
+	int		group_size;
+	int		c;
 	operation		operations[3] = {swap, shift_up, shift_down};
 
 	data = create_stack_lst(argc, argv);
 	//head_b = NULL;
+	c = 0;
+	if (stack_a_sorted(data.head_a))
+	{
+		print_stack(data.head_a, data.head_b, 1);
+		printf("It's sorted congrats!\n");
+		return (1);
+	}
+	group_size = data.size_a / GROUPS;
+	sort_big(data, operations, group_size, &c);
+	printf("c = %d\n", c);
 	//counter = 0;
-	//smallest = NULL;
-	//push_swap(&head_a, &head_b, smallest, &counter);
-	sort_big(data, operations, lst_size(*data.head_a) / 2);
-	//printf("counter = %d\n", counter);
-	//printf("%d\n", head_a->content);
-	/*
-	counter = 0;
-	//swap(&head_a);
-	//shift_up(&head_a);
-	//shift_down(&head_a);
-	//push_b(&head_a, &head_b);
-	push_swap(&head_a, &head_b, smallest, &counter);
-	while (head_a)
-	{
-		printf("%d\n", head_a->content);
-		head_a = head_a->next;
-	}
-	while (head_b)
-	{
-		printf("stack b %d\n", head_b->content);
-		head_b = head_b->next;
-	}*/
-	/*stack = create_stack_arr(argc, argv, 1);
-	rsort(stack, argc - 1, &head_a, &head_b, &counter);
-	//shift_up_arr(stack, argc - 1);
-	while (head_b)
-	{
-		printf("stack b %d\n", head_b->content);
-		head_b = head_b->next;
-	}
-	printf("counter = %d\n", counter);*/
-	/*i = 0;
-	while (i < argc - 1)
-	{
-		printf("%d\n", stack[i]);
-		i++;
-	}*/
 	return (0);
 }
