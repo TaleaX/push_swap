@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 11:12:58 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/01 20:41:18 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/03 17:05:37 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,21 @@ int	lst_size(t_list *lst)
 	{
 		lst = lst->next;
 		i++;
+	}
+	return (i);
+}
+
+int	find_sel_node_spot(t_list *head)
+{
+	int	i;
+
+	i = -1;
+	while (head)
+	{
+		i++;
+		if (head->selected)
+			return (i);
+		head = head->next;
 	}
 	return (i);
 }

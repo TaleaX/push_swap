@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/03 12:46:19 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/04 17:57:53 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,30 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "libft.h"
-# define GROUPS 12
+# define GROUPS 11
+# define CONST_A 1
+# define CONST_B 2
 
 typedef enum op {
-	PUSH_A = 1,
-	PUSH_B,
-	SWAP_A,
+	SWAP_A = 1,
 	SWAP_B,
 	SHIFT_UP_A,
 	SHIFT_UP_B,
 	SHIFT_DOWN_A,
 	SHIFT_DOWN_B,
+	SWAP_BOTH,
 	SHIFT_UP_BOTH,
 	SHIFT_DOWN_BOTH,
-	SWAP_BOTH
-
+	PUSH_A,
+	PUSH_B,
+	ZERO_ALL,
 } t_op;
 
 typedef enum min_op {
 	SWAP,
 	SHIFT_UP,
 	SHIFT_DOWN,
-
+	ZERO,
 } t_min_op;
 
 typedef void (*operation) (t_list **head);
@@ -70,6 +72,7 @@ int		find_node_by_content(t_list *head, int content);
 void	sort_big(t_data data, operation operations[3], int group_size, int *c);
 
 void	print_stack(t_list *head_a, t_list *head_b, t_op OP);
+void	print_stack_dev(t_list *head_a, t_list *head_b, t_op OP);
 
 int		is_sorted(t_list *head);
 
@@ -83,8 +86,13 @@ int		smallest_dist_tail(t_list *head, int max_index);
 
 int		is_rev_sorted(t_list *head);
 
+//lst utils
+int	find_sel_node_spot(t_list *head);
+
 //utils
-int	stack_a_sorted(t_list *head_a);
-int	stack_b_sorted(t_list *head_b);
+int		stack_a_sorted(t_list *head_a);
+int		stack_b_sorted(t_list *head_b);
+t_list	*first_node_tail(t_list *head_a, int max_index);
+t_list	*first_node_head(t_list *head_a, int max_index);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 16:52:09 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/03 10:40:29 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/04 16:30:44 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,13 @@ int	smallest_dist_tail(t_list *head, int max_index)
 
 int	stack_b_sorted(t_list *head_b)
 {
-	printf("in here stacl b sorten\n");
 	while (head_b->next)
 	{
 		if (head_b->content < head_b->next->content)
+		{
+			printf("not sorted %d < %d\n", head_b->content, head_b->next->content);
 			return (0);
+		}
 		head_b = head_b->next;
 	}
 	return (1);
@@ -133,4 +135,29 @@ int	stack_a_sorted(t_list *head_a)
 		head_a = head_a->next;
 	}
 	return (1);
+}
+
+t_list *first_node_tail(t_list *head_a, int max_index)
+{
+	t_list	*ret;
+
+	ret = NULL;
+	while (head_a)
+	{
+		if (head_a->index <= max_index)
+			ret = head_a;
+		head_a = head_a->next;
+	}
+	return (ret);
+}
+
+t_list *first_node_head(t_list *head_a, int max_index)
+{
+	while (head_a)
+	{
+		if (head_a->index <= max_index)
+			return (head_a);
+		head_a = head_a->next;
+	}
+	return (NULL);
 }
