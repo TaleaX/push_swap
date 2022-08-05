@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/05 12:12:30 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/05 18:34:03 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "libft.h"
-# define GROUPS 10
 # define CONST_A 1
 # define CONST_B 2
+# define ERROR 0
+# define PASS 1
 
 typedef enum op {
 	SWAP_A = 1,
@@ -94,5 +95,8 @@ int		stack_a_sorted(t_list *head_a);
 int		stack_b_sorted(t_list *head_b);
 t_list	*first_node_tail(t_list *head_a, int max_index);
 t_list	*first_node_head(t_list *head_a, int max_index);
+
+//sort small
+void	sort_small(t_data *data, operation operations[3], int *c);
 
 #endif

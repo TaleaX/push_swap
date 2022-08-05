@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/03 11:50:39 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/05 18:49:43 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,42 @@
 	printf("counter = %d\n", *counter);
 }*/
 
+int check_limits(char *str)
+{
+	size_t	len;
+
+	len = ft_strlen(str);
+	if (len > 10)
+		return (0);
+	while (*str)
+	{
+		
+		str++;
+	}
+}
+
+int error(int argc, char **argv)
+{
+	int	j;
+	int	num;
+	int	num2;
+
+	while (argc-- > 1)
+	{
+		num = ft_atoi(*(argv + argc));
+		if ((num == 0 && ft_strlen(*(argv + argc)) > 2) || (num == 0 && ft_strlen(*(argv + argc)) != 2 && (**(argv + argc) > '9' || **(argv + argc) < '0')))
+			return (1);
+		j = argc - 1;
+		while (j-- > 1)
+		{
+			num2 = ft_atoi(*(argv + j));
+			if (num == num2)
+				return (1);
+		}
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	//t_list			*head_a;
@@ -35,19 +71,44 @@ int	main(int argc, char **argv)
 	//int				i;
 	t_data	data;
 	int		group_size;
+	int		groups;
 	int		c;
 	operation		operations[3] = {swap, shift_up, shift_down};
 
+	if (argc == 1)
+		return (0);
+	if (error(argc, argv))
+	{
+		printf("ERROR\n");
+		return (0);
+	}
 	data = create_stack_lst(argc, argv);
 	//head_b = NULL;
 	c = 0;
+	groups = 1;
 	if (stack_a_sorted(data.head_a))
 	{
-		print_stack(data.head_a, data.head_b, 1);
+		print_stack(data.head_a, data.head_b, ZERO_ALL);
 		printf("It's sorted congrats!\n");
 		return (1);
 	}
-	group_size = data.size_a / GROUPS;
+	if(argc <= 4)
+	{
+		sort_small(&data, operations, &c);
+		return (1);
+	}
+	if(argc <= 6)
+	{
+		printf("sorting 5 and below is not done yet\n");
+		return (1);
+	}
+	if (argc > 500)
+		groups = 30;
+	else if (argc > 100)
+		groups = 10;
+	else
+		groups = 10;
+	group_size = data.size_a / groups;
 	sort_big(data, operations, group_size, &c);
 	printf("c = %d\n", c);
 	//counter = 0;

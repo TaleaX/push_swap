@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 07:03:18 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/05 12:09:55 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/05 17:41:38 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	find_spot(t_data data, t_list *to_insert)
 		index++;
 		data.head_b = data.head_b->next;
 	}
-	return (0);
+	return (index);
 }
 
 void	push_back_all(t_data data, int *c)
@@ -35,7 +35,7 @@ void	push_back_all(t_data data, int *c)
 	while (data.head_b)
 	{
 		push_a(&data.head_a, &data.head_b);
-		print_stack_dev(data.head_a, data.head_b, PUSH_A);
+		//print_stack_dev(data.head_a, data.head_b, PUSH_A);
 		(*c)++;
 	}
 }
@@ -51,13 +51,14 @@ int		pre_check(t_data *data, operation operations[3], int index, int *c)
 		(*c)++;
 		return (1);
 	}
-	if (index == 0)
+	/*if (index == data->size_b - 1)
 	{
+		printf("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW\n");
 		operations[1](&data->head_b);
 		print_stack_dev(data->head_a, data->head_b, CONST_B + 2);
 		(*c)++;
 		return (1);
-	}
+	}*/
 	return (0);
 }
 
@@ -151,7 +152,7 @@ void	sort_b(t_data *data, operation operations[3], int *c)
 
 	index = find_spot(*data, data->head_b);
 	//printf("data size b %d index %d head %d\n", data->size_b, index, data->head_b->content);
-	printf("index = %d\n", index);
+	printf("index = %d head %d\n", index, data->head_b->content);
 	if (pre_check(data, operations, index, c))
 		return ;
 	OP = 1;

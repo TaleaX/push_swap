@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 12:17:11 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/05 12:05:21 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/05 17:50:23 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ void	print_stack(t_list *head_a, t_list *head_b, t_op OP)
 		printf("rrb\n");
 	else if (OP == SHIFT_DOWN_BOTH)
 		printf("rrr\n");
-	else if (!OP)
+	else if (OP == ZERO_ALL)
 		printf("First Print\n");
-	/*while (tmp_a || tmp_b)
+	while (tmp_a || tmp_b)
 	{
 		if (tmp_a)
 		{
-			printf("%d  index = %d sel = %d", tmp_a->content, tmp_a->index, tmp_a->selected);
+			printf("%d  ", tmp_a->content);
 			//printf("%d  ", tmp_a->content);
 			while (max_digits-- > get_digits(tmp_a->content))
 				printf(" ");
@@ -96,12 +96,12 @@ void	print_stack(t_list *head_a, t_list *head_b, t_op OP)
 		if (tmp_b)
 		{
 			//printf("%d", tmp_b->content);
-			printf("%d index = %d", tmp_b->content, tmp_b->index);
+			printf("%d ", tmp_b->content);
 			tmp_b = tmp_b->next;
 		}
 		printf("\n");
 		max_digits = tmp_max_digits;
-	}*/
+	}
 	printf("_ ");
 	while (max_digits-- > 1)
 		printf(" ");
@@ -145,9 +145,9 @@ void	print_stack_dev(t_list *head_a, t_list *head_b, t_op OP)
 		printf("rrb\n");
 	else if (OP == SHIFT_DOWN_BOTH)
 		printf("rrr\n");
-	else if (!OP)
+	else if (OP == ZERO_ALL)
 		printf("First Print\n");
-	printf("a : ");
+	/*printf("a : ");
 	while (tmp_a)
 	{
 		printf("%d[%d] ", tmp_a->content, tmp_a->selected);
@@ -158,6 +158,6 @@ void	print_stack_dev(t_list *head_a, t_list *head_b, t_op OP)
 	{
 		printf("%d ", tmp_b->content);
 		tmp_b = tmp_b->next;
-	}
+	}*/
 	printf("\n");
 }

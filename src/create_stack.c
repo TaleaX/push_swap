@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:29 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/02 09:41:56 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/05 12:57:43 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ t_data	create_stack_lst(int argc, char **argv)
 	data.size_a = 0;
 	while (argc-- > 1)
 	{
-		if (**(argv + argc) < '0' || **(argv + argc) > '9')
-			continue ;
 		num = ft_atoi(*(argv + argc));
 		stack = lst_new(num, 0, -1);
 		lst_add_front(&data.head_a, stack);
