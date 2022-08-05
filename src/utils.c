@@ -6,25 +6,11 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 16:52:09 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/04 16:30:44 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/05 20:27:07 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_list	*get_smallest(t_list *head_a)
-{
-	t_list	*smallest;
-
-	smallest = head_a;
-	while (head_a)
-	{
-		if (smallest->content > head_a->content)
-			smallest = head_a;
-		head_a = head_a->next;
-	}
-	return (smallest);
-}
 
 t_list	*get_greatest(t_list *head_a)
 {
@@ -40,20 +26,18 @@ t_list	*get_greatest(t_list *head_a)
 	return (greatest);
 }
 
-int	get_greatest_num(int *arr, int end)
+static t_list	*get_smallest(t_list *head_a)
 {
-	int	greatest;
-	int	i;
+	t_list	*smallest;
 
-	greatest = arr[0];
-	i = 0;
-	while (arr[i] != end)
+	smallest = head_a;
+	while (head_a)
 	{
-		if (greatest < arr[i])
-			greatest = arr[i];
-		i++;
+		if (smallest->content > head_a->content)
+			smallest = head_a;
+		head_a = head_a->next;
 	}
-	return (greatest);
+	return (smallest);
 }
 
 t_list	*get_next_smallest_node(t_list *head_a, t_list *prev_smallest)

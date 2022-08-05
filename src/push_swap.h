@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/05 18:34:03 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/05 20:26:58 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,17 @@ typedef struct s_data {
 	int		size_b;
 }	t_data;
 
+// create stack
 t_data	create_stack_lst(int argc, char **argv);
-int		*create_stack_arr(int argc, char **argv, int stack_a);
 
+//operations
 void	shift_up(t_list **head);
 void	shift_down(t_list **head);
 void	swap(t_list **head);
 void	push_b(t_list **head_a, t_list **head_b);
 void	push_a(t_list **head_a, t_list **head_b);
 
+//lst utils
 t_list	*lst_new(int content, int selected, int index);
 void	lst_rm(t_list **head, t_list *lst);
 t_list	*lst_getlast(t_list *lst);
@@ -68,24 +70,10 @@ void	lst_add_front(t_list **lst, t_list *new);
 void	lst_add_back(t_list **lst, t_list *new);
 int		lst_size(t_list *lst);
 int		find_node_spot(t_list *head, t_list *to_find);
-int		find_node_by_content(t_list *head, int content);
 
-void	sort_big(t_data data, operation operations[3], int group_size, int *c);
-
+//visuals
 void	print_stack(t_list *head_a, t_list *head_b, t_op OP);
 void	print_stack_dev(t_list *head_a, t_list *head_b, t_op OP);
-
-int		is_sorted(t_list *head);
-
-t_list	*get_greatest(t_list *head_a);
-t_list	*get_smallest(t_list *head_a);
-t_list	*get_next_smallest_node(t_list *head_a, t_list *prev_smallest);
-int		get_greatest_num(int *arr, int len);
-
-int		smallest_dist_head(t_list *head, int max_index);
-int		smallest_dist_tail(t_list *head, int max_index);
-
-int		is_rev_sorted(t_list *head);
 
 //lst utils
 int	find_sel_node_spot(t_list *head);
@@ -95,8 +83,15 @@ int		stack_a_sorted(t_list *head_a);
 int		stack_b_sorted(t_list *head_b);
 t_list	*first_node_tail(t_list *head_a, int max_index);
 t_list	*first_node_head(t_list *head_a, int max_index);
+int		smallest_dist_head(t_list *head, int max_index);
+int		smallest_dist_tail(t_list *head, int max_index);
+t_list	*get_next_smallest_node(t_list *head_a, t_list *prev_smallest);
+t_list	*get_greatest(t_list *head_a);
 
 //sort small
 void	sort_small(t_data *data, operation operations[3], int *c);
+
+//sort big
+void	sort_big(t_data data, operation operations[3], int group_size, int *c);
 
 #endif
