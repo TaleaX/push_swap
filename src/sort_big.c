@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 07:03:18 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/04 17:59:27 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/05 12:09:55 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ t_op	check_double_sort(t_data *data, operation operations[3], t_min_op OP)
 	if (!data->head_a)
 		return (ZERO_ALL);
 	index = find_sel_node_spot(data->head_a);
+	if (index == 0)
+		return (ZERO_ALL);
 	if (index == 1)
 	{
 		operations[0](&data->head_a);
@@ -130,6 +132,15 @@ void	pre_sort(t_data *data, operation operations[3], int counter, t_min_op OP, i
 		(*c) += 2;
 		//printf("index %d < size %d counter %d node content %d\n", index, data->size_b, counter, node_content);
 	}
+	if (OP == 1)
+	{
+		operations[0](&data->head_b);
+		ALL_OP = check_double_sort(data, operations, 0);
+		if (ALL_OP != ZERO_ALL)
+			print_stack_dev(data->head_a, data->head_b, ALL_OP);
+		else
+			print_stack_dev(data->head_a, data->head_b, CONST_B);
+	}
 }
 
 void	sort_b(t_data *data, operation operations[3], int *c)
@@ -144,8 +155,8 @@ void	sort_b(t_data *data, operation operations[3], int *c)
 	if (pre_check(data, operations, index, c))
 		return ;
 	OP = 1;
-	counter = index;
-	if (index > (data->size_b / 2))
+	counter = index - 1;
+	if (index > (data->size_b / 2)) //if data->size_b % 2 == 0 index >= ... ; else index > ...
 	{
 		counter = data->size_b - index - 1;
 		OP = 2;

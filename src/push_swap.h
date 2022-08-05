@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/04 17:57:53 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/05 12:12:30 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "libft.h"
-# define GROUPS 11
+# define GROUPS 10
 # define CONST_A 1
 # define CONST_B 2
 
