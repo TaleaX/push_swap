@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 11:12:58 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/03 17:05:37 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/05 20:34:05 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,31 +118,3 @@ int	find_node_spot(t_list *head, t_list *to_find)
 	return (counter);
 }
 
-int	find_node_by_content(t_list *head, int content)
-{
-	int	counter;
-
-	counter = 0;
-	while (head)
-	{
-		if (head->content == content)
-			break;
-		counter++;
-		head = head->next;
-	}
-	return (counter);
-}
-
-t_list	*find_node_by_spot(t_list *head, int spot)
-{
-	t_list	*tmp;
-
-	tmp = head;
-	while (head)
-	{
-		if (find_node_spot(tmp, head) == spot)
-			break;
-		head = head->next;
-	}
-	return (head);
-}

@@ -17,21 +17,11 @@ all: $(NAME)
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
 	@gcc -g -o $@ -c $^ $(INC_LIB)
-#$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-#@gcc $(FLAGS) -o $@ -c $^ $(INC_LIB)
-#@echo "##### Creating" [ $@ ] " #####"
-#@gcc $(FLAGS) -o $@ -c $^ $(INC_LIB)
 
 $(NAME): $(OBJ)
 	@make -C $(LIB_DIR) --silent
 	@mv $(LIB_DIR)*.o $(OBJ_DIR)
 	$(CC) -g -o $(NAME) $(OBJ) -L $(LIB_DIR) -lft
-#rm -f *.o
-#@gcc $(FLAGS) $(OBJ) $(INC_SRC)
-#$(OBJ): $(SRC)
-#	$(CC) $(CFLAGS) -c $(SRC) $(INC)
-
-
 
 clean:
 	rm -f $(OBJ_DIR)*.o
