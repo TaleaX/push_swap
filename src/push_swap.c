@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/05 18:49:43 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/07 16:25:09 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(int argc, char **argv)
 	int		group_size;
 	int		groups;
 	int		c;
-	operation		operations[3] = {swap, shift_up, shift_down};
+	operation		operations[8] = {swap_a, swap_b, shift_up_a, shift_up_b, shift_down_a, shift_down_b, push_a, push_b};
 
 	if (argc == 1)
 		return (0);
@@ -102,12 +102,12 @@ int	main(int argc, char **argv)
 		printf("sorting 5 and below is not done yet\n");
 		return (1);
 	}
-	if (argc > 500)
-		groups = 30;
+	if (argc >= 500)
+		groups = 17;
 	else if (argc > 100)
-		groups = 10;
+		groups = 8;
 	else
-		groups = 10;
+		groups = 2;
 	group_size = data.size_a / groups;
 	sort_big(data, operations, group_size, &c);
 	printf("c = %d\n", c);

@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 12:17:11 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/05 17:50:23 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/07 14:15:31 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,19 @@ void	print_stack(t_list *head_a, t_list *head_b, t_op OP)
 		printf("sa\n");
 	else if (OP == SWAP_B)
 		printf("sb\n");
-	else if (OP == SWAP_BOTH)
+	else if (OP == SS)
 		printf("ss\n");
 	else if (OP == SHIFT_UP_A)
 		printf("ra\n");
 	else if (OP == SHIFT_UP_B)
 		printf("rb\n");
-	else if (OP == SHIFT_UP_BOTH)
+	else if (OP == RR)
 		printf("rr\n");
 	else if (OP == SHIFT_DOWN_A)
 		printf("rra\n");
 	else if (OP == SHIFT_DOWN_B)
 		printf("rrb\n");
-	else if (OP == SHIFT_DOWN_BOTH)
+	else if (OP == RRR)
 		printf("rrr\n");
 	else if (OP == ZERO_ALL)
 		printf("First Print\n");
@@ -81,7 +81,7 @@ void	print_stack(t_list *head_a, t_list *head_b, t_op OP)
 	{
 		if (tmp_a)
 		{
-			printf("%d  ", tmp_a->content);
+			printf("%d %d  ", tmp_a->content, tmp_a->index);
 			//printf("%d  ", tmp_a->content);
 			while (max_digits-- > get_digits(tmp_a->content))
 				printf(" ");
@@ -131,26 +131,26 @@ void	print_stack_dev(t_list *head_a, t_list *head_b, t_op OP)
 		printf("sa\n");
 	else if (OP == SWAP_B)
 		printf("sb\n");
-	else if (OP == SWAP_BOTH)
+	else if (OP == SS)
 		printf("ss\n");
 	else if (OP == SHIFT_UP_A)
 		printf("ra\n");
 	else if (OP == SHIFT_UP_B)
 		printf("rb\n");
-	else if (OP == SHIFT_UP_BOTH)
+	else if (OP == RR)
 		printf("rr\n");
 	else if (OP == SHIFT_DOWN_A)
 		printf("rra\n");
 	else if (OP == SHIFT_DOWN_B)
 		printf("rrb\n");
-	else if (OP == SHIFT_DOWN_BOTH)
+	else if (OP == RRR)
 		printf("rrr\n");
 	else if (OP == ZERO_ALL)
 		printf("First Print\n");
-	/*printf("a : ");
+	printf("a : ");
 	while (tmp_a)
 	{
-		printf("%d[%d] ", tmp_a->content, tmp_a->selected);
+		printf("%d ", tmp_a->content);
 		tmp_a = tmp_a->next;
 	}
 	printf("\nb : ");
@@ -158,6 +158,6 @@ void	print_stack_dev(t_list *head_a, t_list *head_b, t_op OP)
 	{
 		printf("%d ", tmp_b->content);
 		tmp_b = tmp_b->next;
-	}*/
+	}
 	printf("\n");
 }

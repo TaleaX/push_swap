@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/05 20:26:58 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/07 16:49:45 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,36 @@
 # define CONST_B 2
 # define ERROR 0
 # define PASS 1
+# define BEFORE_PUSH 0
+# define FIRST_PUSH 1
+
 
 typedef enum op {
-	SWAP_A = 1,
+	S_A,
+	S_B,
+	R_A,
+	R_B,
+	RR_A,
+	RR_B,
+	P_A,
+	P_B,
+	SS,
+	RR,
+	RRR,
+	ZERO_ALL,
+} t_op;
+
+typedef enum min_op {
+	SWAP_A,
 	SWAP_B,
 	SHIFT_UP_A,
 	SHIFT_UP_B,
 	SHIFT_DOWN_A,
 	SHIFT_DOWN_B,
-	SWAP_BOTH,
-	SHIFT_UP_BOTH,
-	SHIFT_DOWN_BOTH,
 	PUSH_A,
 	PUSH_B,
-	ZERO_ALL,
-} t_op;
-
-typedef enum min_op {
-	SWAP,
-	SHIFT_UP,
-	SHIFT_DOWN,
 	ZERO,
 } t_min_op;
-
-typedef void (*operation) (t_list **head);
 
 typedef struct s_data {
 	t_list	*head_a;
@@ -52,15 +58,21 @@ typedef struct s_data {
 	int		size_b;
 }	t_data;
 
+//übergebe immer nur den struct
+typedef void (*operation) (t_data *data);
+
 // create stack
 t_data	create_stack_lst(int argc, char **argv);
 
 //operations
-void	shift_up(t_list **head);
-void	shift_down(t_list **head);
-void	swap(t_list **head);
-void	push_b(t_list **head_a, t_list **head_b);
-void	push_a(t_list **head_a, t_list **head_b);
+void	shift_up_a(t_data *data);
+void	shift_up_b(t_data *data);
+void	shift_down_a(t_data *data);
+void	shift_down_b(t_data *data);
+void	swap_a(t_data *data);
+void	swap_b(t_data *data);
+void	push_b(t_data *data);
+void	push_a(t_data *data);
 
 //lst utils
 t_list	*lst_new(int content, int selected, int index);
