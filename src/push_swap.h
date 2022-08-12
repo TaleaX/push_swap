@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/07 16:49:45 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/11 15:06:23 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@
 #include "libft.h"
 # define CONST_A 1
 # define CONST_B 2
-# define ERROR 0
-# define PASS 1
-# define BEFORE_PUSH 0
-# define FIRST_PUSH 1
+# define ERROR -1
 
+# define BEFORE_PUSH 0
+# define START_PUSH 1
+# define AFTER_PUSH 2
+# define PASS 3
+# define PUSH 4
+# define SPECIAL 5
 
 typedef enum op {
 	S_A,
@@ -56,6 +59,7 @@ typedef struct s_data {
 	t_list	*head_b;
 	int		size_a;
 	int		size_b;
+	int		size_sel;
 }	t_data;
 
 //übergebe immer nur den struct
@@ -102,8 +106,11 @@ t_list	*get_greatest(t_list *head_a);
 
 //sort small
 void	sort_small(t_data *data, operation operations[3], int *c);
+void	sort_three(t_data *data, operation operations[8], int *c);
 
 //sort big
 void	sort_big(t_data data, operation operations[3], int group_size, int *c);
+int		find_spot(t_data data, t_list *to_insert);
+void	sort_A(t_data *data, operation operations[8], int *c);
 
 #endif

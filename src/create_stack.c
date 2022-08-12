@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:29 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/05 12:57:43 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/10 16:38:18 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ t_data	create_stack_lst(int argc, char **argv)
 	add_index(data.head_a);
 	data.size_a = lst_size(data.head_a);
 	data.size_b = 0;
+	data.size_sel = 0;
 	return (data);
 }

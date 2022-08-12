@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/07 16:25:09 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/11 16:36:21 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,22 +90,24 @@ int	main(int argc, char **argv)
 	{
 		print_stack(data.head_a, data.head_b, ZERO_ALL);
 		printf("It's sorted congrats!\n");
-		return (1);
+		return (0);
 	}
 	if(argc <= 4)
 	{
-		sort_small(&data, operations, &c);
+		sort_three(&data, operations, &c);
 		return (1);
 	}
-	if(argc <= 6)
+	if(argc <= 11)
 	{
-		printf("sorting 5 and below is not done yet\n");
+		sort_small(&data, operations, &c);
 		return (1);
 	}
 	if (argc >= 500)
 		groups = 17;
 	else if (argc > 100)
-		groups = 8;
+		groups = 9;
+	else if (argc > 50)
+		groups = 9;
 	else
 		groups = 2;
 	group_size = data.size_a / groups;
