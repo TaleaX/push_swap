@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/11 15:06:23 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/13 22:42:19 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void	lst_add_front(t_list **lst, t_list *new);
 void	lst_add_back(t_list **lst, t_list *new);
 int		lst_size(t_list *lst);
 int		find_node_spot(t_list *head, t_list *to_find);
+t_list	*lst_get_smallest(t_list *head);
+t_list	*lst_get_greatest(t_list *head);
 
 //visuals
 void	print_stack(t_list *head_a, t_list *head_b, t_op OP);

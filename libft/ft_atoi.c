@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 16:18:46 by tdehne            #+#    #+#             */
-/*   Updated: 2022/04/08 12:19:40 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/05 13:16:51 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,17 @@ int	ft_atoi(const char *nptr)
 		if (*nptr < '0' || *nptr > '9')
 			break ;
 		log_10 = get_log_10(nptr);
-		if (!minus && ((result > 922337203685477580)
+		/*if (!minus && ((result > 922337203685477580)
 				|| (result == 922337203685477580 && *nptr > '7')))
 			return (-1);
 		if (minus && ((result > 922337203685477580)
 				|| (result == 922337203685477580 && *nptr > '8')))
+			return (0);*/
+		if (!minus && ((result > 2147483640)
+				|| (result == 2147483640 && *nptr > '7')))
+			return (0);
+		if (minus && ((result > 2147483640)
+				|| (result == 2147483640 && *nptr > '8')))
 			return (0);
 		result += ((*nptr) - '0') * pow_of_a(10, log_10);
 		nptr++;
