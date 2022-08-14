@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 12:17:11 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/12 12:50:24 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/14 12:35:27 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	print_stack(t_list *head_a, t_list *head_b, t_op OP)
 	max_digits = highest_digit(head_a);
 	tmp_max_digits = max_digits;
 	printf("\n-------------------------------\n");
-	printf("Exec: ");
 	if (OP == PUSH_A)
 		printf("pa\n");
 	else if (OP == PUSH_B)
@@ -120,7 +119,6 @@ void	print_stack_dev(t_list *head_a, t_list *head_b, t_op OP)
 	tmp_a = head_a;
 	tmp_b = head_b;
 	//printf("\n-------------------------------\n");
-	printf("Exec: ");
 	if (OP == PUSH_A)
 		printf("pa\n");
 	else if (OP == PUSH_B)
