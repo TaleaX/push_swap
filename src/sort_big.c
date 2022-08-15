@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 07:03:18 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/15 16:23:56 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/15 17:59:46 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,7 +351,7 @@ void	sort_big(t_data data, operation operations[8], int group_size, int *c)
 		return ;
 	pre_sort_b(&data, operations, OP, group_size, c);
 	print_stack(data.head_a, data.head_b, ZERO_ALL);
-	sort_A(&data, operations, c);
+	//sort_A(&data, operations, c);
 	print_stack(data.head_a, data.head_b, ZERO_ALL);
 	printf("OPS %d\n", *c);
 	/*if (stack_b_sorted(data.head_b))
