@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/15 18:01:48 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/16 14:03:49 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ int	main(int argc, char **argv)
 		groups = 2;
 	group_size = data.size_a / groups;
 	sort_big(data, operations, group_size, &c);
-	printf("c = %d\n", c);
 	//counter = 0;
 	return (0);
 }

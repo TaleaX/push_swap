@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 12:17:11 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/14 12:35:27 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/16 17:55:33 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,13 +148,13 @@ void	print_stack_dev(t_list *head_a, t_list *head_b, t_op OP)
 	printf("a : ");
 	while (tmp_a)
 	{
-		printf("%d ", tmp_a->content);
+		printf("%d[%d] ", tmp_a->content, tmp_a->index);
 		tmp_a = tmp_a->next;
 	}
 	printf("\nb : ");
 	while (tmp_b)
 	{
-		printf("%d ", tmp_b->content);
+		printf("%d[%d] ", tmp_b->content, tmp_b->index);
 		tmp_b = tmp_b->next;
 	}
 	printf("\n");

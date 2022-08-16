@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/13 22:42:19 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/16 14:25:34 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,6 @@ void	sort_three(t_data *data, operation operations[8], int *c);
 //sort big
 void	sort_big(t_data data, operation operations[3], int group_size, int *c);
 int		find_spot(t_data data, t_list *to_insert);
-void	sort_A(t_data *data, operation operations[8], int *c);
+void	sort_A(t_data *data, operation operations[8], int group_size, int *c);
 
 #endif

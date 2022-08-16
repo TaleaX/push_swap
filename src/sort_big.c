@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 07:03:18 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/15 17:59:46 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/16 18:17:50 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void	before_push(t_data *data, operation operations[8], t_min_op OP, int counter
 	}
 }
 
-void	after_push(t_data *data, operation operations[8], t_min_op OP, int counter, int index, int *c)
+void	after_push(t_data *data, operation operations[8], t_min_op OP, int counter, int index, int *min_counter, int *c)
 {
 	int	add_count;
 	int	start_count;
@@ -170,7 +170,7 @@ void	after_push(t_data *data, operation operations[8], t_min_op OP, int counter,
 	if (OP == SHIFT_UP_A)
 		(counter)++;
 	printf("AAAAAAAAAAAAAAAAAAFTER PUSH counter %d index %d data size %d OP = %d\n", counter, index, data->size_a, OP);
-	while (!stack_a_sorted(data->head_a))
+	while (counter)
 	{
 		/*if (counter > data->size_a / 2 && OP == SHIFT_UP_A)
 		{
@@ -195,48 +195,49 @@ void	after_push(t_data *data, operation operations[8], t_min_op OP, int counter,
 			if (OP == SHIFT_UP_A)
 				(counter)++;
 			(*c)++;
+			(*min_counter)--;
 			print_stack_dev(data->head_a, data->head_b, PUSH_A);
 		}
-		else if (index > (data->size_a / 2) && OP ==  SHIFT_UP_A)
-		{
-			//printf("hidden spot %d\n", hidden_spot);
-			add_count = data->size_a - index;
-			before_push(data, operations, SHIFT_DOWN_A, add_count, index, c);
-			/*if ((data->size_a / 2) < data->size_a - start_count - add_count)
-			{
-				//printf("______________________LOL____________________________________\n");
-				OP = SHIFT_DOWN_A;
-				counter = data->size_a - start_count - add_count;
-			}*/
-			counter += add_count;
-			/*if (counter > data->size_a / 2)
-			{
-				OP ^= 6;
-				counter = data->size_a - counter;
-			}*/
-			//printf("__________________________________________________________\n");
-		}
-		else if (index <= (data->size_a / 2) && OP ==  SHIFT_DOWN_A)
-		{
-			//printf("hidden spot %d\n", hidden_spot);
-			add_count = index;
-			printf("______________________LOL____________________________________\n");
-			before_push(data, operations, SHIFT_UP_A, add_count, index, c);
-			printf("______________________LOL____________________________________\n");
-			print_stack_dev(data->head_a, data->head_b, OP);
-			/*if ((data->size_a / 2) < data->size_a - start_count - add_count)
-			{
-				//printf("______________________LOL____________________________________\n");
-				OP = SHIFT_DOWN_A;
-				counter = data->size_a - start_count - add_count;
-			}*/
-			counter += add_count;
-			// if (counter > data->size_a / 2)
-			// {
-			// 	OP ^= 6;
-			// 	counter = data->size_a - counter;
-			// }
-		}
+		// else if (index > (data->size_a / 2) && OP ==  SHIFT_UP_A)
+		// {
+		// 	//printf("hidden spot %d\n", hidden_spot);
+		// 	add_count = data->size_a - index;
+		// 	before_push(data, operations, SHIFT_DOWN_A, add_count, index, c);
+		// 	/*if ((data->size_a / 2) < data->size_a - start_count - add_count)
+		// 	{
+		// 		//printf("______________________LOL____________________________________\n");
+		// 		OP = SHIFT_DOWN_A;
+		// 		counter = data->size_a - start_count - add_count;
+		// 	}*/
+		// 	counter += add_count;
+		// 	if (counter > data->size_a / 2)
+		// 	{
+		// 		OP ^= 6;
+		// 		counter = data->size_a - counter;
+		// 	}
+		// 	//printf("__________________________________________________________\n");
+		// }
+		// else if (index <= (data->size_a / 2) && OP ==  SHIFT_DOWN_A)
+		// {
+		// 	//printf("hidden spot %d\n", hidden_spot);
+		// 	add_count = index;
+		// 	printf("______________________LOL____________________________________\n");
+		// 	before_push(data, operations, SHIFT_UP_A, add_count, index, c);
+		// 	printf("______________________LOL____________________________________\n");
+		// 	print_stack_dev(data->head_a, data->head_b, OP);
+		// 	/*if ((data->size_a / 2) < data->size_a - start_count - add_count)
+		// 	{
+		// 		//printf("______________________LOL____________________________________\n");
+		// 		OP = SHIFT_DOWN_A;
+		// 		counter = data->size_a - start_count - add_count;
+		// 	}*/
+		// 	counter += add_count;
+		// 	if (counter > data->size_a / 2)
+		// 	{
+		// 		OP ^= 6;
+		// 		counter = data->size_a - counter;
+		// 	}
+		// }
 		else
 		{
 			operations[OP](data);
@@ -271,31 +272,37 @@ int check_double_swap(t_data *data)
 	return (0);
 }
 
-void sort_A(t_data *data, operation operations[8], int *c)
+/*void sort_A(t_data *data, operation operations[8], int group_size, int *c)
 {
 	t_min_op	OP;
 	int			index;
+	int			min_counter;
 	int			counter;
+	int			init_after;
+	int			min_index;
+	t_min_op	OP_B;
 	t_list		*last_a;
 
+	OP_B = ZERO;
+	min_index = data->size_b - group_size - 1;
+	min_counter = data->size_b - 1;
+	init_after = 0;
 	while (data->size_b)
 	{
-		index = find_hidden_spot(*data, data->head_b);
-		printf("FIRST index %d\n", index);
-		counter = index;
-		OP = SHIFT_UP_A;
-		if (index > (data->size_a / 2)) //if data->size_b % 2 == 0 index >= ... ; else index > ...
+		if (!init_after)
 		{
-			counter = data->size_a - index;
-			OP = SHIFT_DOWN_A;
+			index = find_hidden_spot(*data, data->head_b);
+			printf("FIRST index %d\n", index);
+			counter = index;
+			OP = SHIFT_UP_A;
+			if (index > (data->size_a / 2)) //if data->size_b % 2 == 0 index >= ... ; else index > ...
+			{
+				counter = data->size_a - index;
+				OP = SHIFT_DOWN_A;
+			}
+			before_push(data, operations, OP, counter, index, c);
 		}
-		before_push(data, operations, OP, counter, index, c);
 		//printf("first push\n");
-		operations[PUSH_A](data);
-		data->size_a++;
-		data->size_b--;
-		(*c)++;
-		print_stack_dev(data->head_a, data->head_b, PUSH_A);
 		if (data->size_a >= 2 && index == 1)
 		{
 			operations[SWAP_A](data);
@@ -310,8 +317,164 @@ void sort_A(t_data *data, operation operations[8], int *c)
 			}
 			continue ;
 		}
-		after_push(data, operations, OP, counter, index, c);
-		printf("size b %d\n", data->size_a);
+		if (push_second(data) == PUSH)
+		{
+			operations[SWAP_B](data);
+			(*c)++;
+			print_stack_dev(data->head_a, data->head_b, SWAP_B);
+		}
+		if (check_to_push(data) == PUSH)
+		{
+			operations[PUSH_A](data);
+			data->size_a++;
+			data->size_b--;
+			if (OP == SHIFT_UP_A)
+			{
+				(counter)++;
+			}
+			(*c)++;
+			print_stack_dev(data->head_a, data->head_b, PUSH_A);
+		}
+		else
+		{
+			if (!init_after)
+			{
+				OP ^= 6;
+				init_after = 1;
+			}
+			counter--;
+		}
+		if (init_after && counter == 0)
+			init_after = 0;
+		//operations[PUSH_A](data);
+		//data->size_a++;
+		//data->size_b--;
+		//min_counter--;
+		//(*c)++;
+		print_stack_dev(data->head_a, data->head_b, PUSH_A);
+		
+		if ((data->size_b - 1) <= min_index)
+		{
+			min_index -= group_size - 1;
+			if (OP_B == ZERO)
+				OP_B = SHIFT_DOWN_B;
+			else
+				OP_B = ZERO;
+		}
+		if (data->head_b && OP_B != ZERO)
+		{
+			operations[OP_B](data);
+			(*c)++;
+			print_stack_dev(data->head_a, data->head_b, OP_B);
+		}
+		after_push(data, operations, OP, counter, index, &min_counter, c);
+		
+		printf("size b %d min index %d\n", data->size_b, min_index);
+	}
+}*/
+
+
+
+t_min_op	rotate_b(t_data *data, operation operations[8], int min_index)
+{
+	t_list	*last;
+
+	last = lst_getlast(data->head_b);
+	if (last->index >= min_index)
+		return (SHIFT_DOWN_B);
+	return (ZERO);
+}
+
+void	ready_to_push(t_data *data, operation operations[8], t_min_op OP, int min_index, int *c)
+{
+	while (data->head_b->index < min_index)
+	{
+		operations[OP](data);
+		print_stack_dev(data->head_a, data->head_b, OP);
+		(*c)++;
+		//printf("min index %d\n", min_index);
+	}
+}
+
+t_min_op	get_ops(t_data data, operation operations[8], int min_index)
+{
+	int	index;
+	t_list	*tmp;
+
+	index = 0;
+	tmp = data.head_b;
+	while(tmp->index < min_index)
+	{
+		//printf("index %d\n", min_index);
+		if (!tmp->next)
+			break ;
+		tmp = tmp->next;
+		index++;
+	}
+	if (index > data.size_b / 2)
+	{
+		return (SHIFT_DOWN_B);
+	}
+	return (SHIFT_UP_B);
+}
+
+void	sort(t_data *data, operation operations[8], int min_index, int reverse, int *c)
+{
+	t_min_op	OP;
+
+	printf("min index %d\n", min_index);
+	if (!data->head_a || !data->head_a->next)
+		return ;
+	// if (data->head_a->next == min_index)
+	// {
+	// 	operations[SWAP_A](data);
+	// 	print_stack_dev(data->head_a, data->head_b, OP);
+	// 	(*c)++;
+	// }
+	if (reverse)
+		OP = SHIFT_DOWN_A;
+	else if (data->head_a->index == min_index)
+		OP = SHIFT_UP_A;
+	else if (data->head_a->index > data->head_a->next->index)
+		OP = SWAP_A;
+	else
+		return ;
+	operations[OP](data);
+	print_stack_dev(data->head_a, data->head_b, OP);
+	(*c)++;
+}
+
+void sort_A(t_data *data, operation operations[8], int group_size, int *c)
+{
+	int			index;
+	int			min_index;
+	int			counter;
+	t_min_op	OP;
+	t_list		*last;
+	
+	min_index = data->size_b - 3;
+	counter = data->size_b - 1;
+	while (data->size_b)
+	{
+		OP = get_ops(*data, operations, min_index);
+		ready_to_push(data, operations, OP, min_index, c);
+		operations[PUSH_A](data);
+		print_stack_dev(data->head_a, data->head_b, PUSH_A);
+		data->size_a++;
+		data->size_b--;
+		counter--;
+		sort(data, operations, min_index, 0, c);
+		if (counter < min_index)
+		{
+			last = lst_getlast(data->head_a);
+			if (last->index == min_index)
+				sort(data, operations, min_index, 1, c);
+			min_index -= 3;
+		}
+		(*c)++;
+		/*if (*c == 500)
+			exit(0);*/
+		//index = find_hidden_spot(*data, data->head_b);
 	}
 }
 
@@ -320,12 +483,13 @@ void	pre_sort_b(t_data *data, operation operations[8], t_min_op OP, int group_si
 	int	max_index;
 	int	counter;
 
-	max_index = group_size - 1;
+	max_index = (group_size - 1) * 2;
 	counter = 0;
 	while (data->size_a)
 	{
-		if (OP == PUSH_B)
-			OP = smallest_dist_head(data->head_a, max_index) < smallest_dist_tail(data->head_a, max_index) ? SHIFT_UP_A : SHIFT_DOWN_A;
+		//if (OP == PUSH_B)
+			
+			//OP = smallest_dist_head(data->head_a, max_index) < smallest_dist_tail(data->head_a, max_index) ? SHIFT_UP_A : SHIFT_DOWN_A;
 		if (data->head_a->index <= max_index)
 		{
 			OP = PUSH_B;
@@ -334,10 +498,30 @@ void	pre_sort_b(t_data *data, operation operations[8], t_min_op OP, int group_si
 			data->size_a--;
 			(counter)++;
 			if (counter > max_index)
-				(max_index) += group_size - 1;
+				(max_index) += (group_size - 1) * 2;
+			operations[OP](data);
+			print_stack_dev(data->head_a, data->head_b, OP);
+			if (data->head_b && data->head_b->index <= (max_index - group_size - 1) && OP == PUSH_B)
+			{
+				//printf("in here \n");
+				//OP = SHIFT_UP_B;
+				operations[SHIFT_UP_B](data);
+				/*if (data->head_a && data->head_a > max_index)
+				{
+					//OP = RR;
+					operations[SHIFT_UP_A](data);
+				}*/
+				print_stack_dev(data->head_a, data->head_b, SHIFT_UP_B);
+				(*c)++;
+			}
 		}
-		operations[OP](data);
-		//print_stack_dev(data->head_a, data->head_b, OP);
+		else
+		{
+			OP = SHIFT_UP_A;
+			operations[OP](data);
+			print_stack_dev(data->head_a, data->head_b, OP);
+			//printf("max index %d\n", max_index);
+		}
 		(*c)++;
 	}
 }
@@ -350,10 +534,10 @@ void	sort_big(t_data data, operation operations[8], int group_size, int *c)
 	if (!data.head_a)
 		return ;
 	pre_sort_b(&data, operations, OP, group_size, c);
-	print_stack(data.head_a, data.head_b, ZERO_ALL);
-	//sort_A(&data, operations, c);
-	print_stack(data.head_a, data.head_b, ZERO_ALL);
-	printf("OPS %d\n", *c);
+	//print_stack(data.head_a, data.head_b, ZERO_ALL);
+	sort_A(&data, operations, group_size, c);
+	//print_stack(data.head_a, data.head_b, ZERO_ALL);
+	//printf("OPS %d\n", *c);
 	/*if (stack_b_sorted(data.head_b))
 		push_back_all(data, c);
 	else
