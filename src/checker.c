@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 17:49:56 by tdehne           ###   ########.fr       */
+/*   Created: 2022/08/17 15:32:58 by tdehne            #+#    #+#             */
+/*   Updated: 2022/08/17 15:39:32 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <stdio.h>
+#include "checker.h"
 
-int	error(int len, char **argv)
+int	error(int argc, char **argv)
 {
 	int	j;
 	int	num;
 	int	num2;
 
-	while (len--)
+	while (argc-- > 1)
 	{
-		num = ft_atoi(*(argv + len));
-		if ((num == 0 && ft_strlen(*(argv + len)) > 2)
-			|| (num == 0 && ft_strlen(*(argv + len)) != 2
-				&& (**(argv + len) > '9' || **(argv + len) < '0')))
+		num = ft_atoi(*(argv + argc));
+		if ((num == 0 && ft_strlen(*(argv + argc)) > 2)
+			|| (num == 0 && ft_strlen(*(argv + argc)) != 2
+				&& (**(argv + argc) > '9' || **(argv + argc) < '0')))
 			return (1);
-		j = len - 1;
-		while (j--)
+		j = argc - 1;
+		while (j-- > 1)
 		{
 			num2 = ft_atoi(*(argv + j));
 			if (num == num2)
@@ -71,29 +70,21 @@ void	decide_algo(t_data *data, t_operation operations[8], int argc, t_vars v)
 
 int	main(int argc, char **argv)
 {
-	t_data			data;
-	int				groups;
-	t_vars			vars;
-	t_operation		operations[8];
-	t_vars_parse	vars_p;
+	t_data		data;
+	int			groups;
+	t_vars		vars;
+	t_operation	operations[8];
 
-	vars_p.len = 0;
-	if (argc <= 1)
+	if (argc == 1)
 		return (0);
-	vars_p.nums = parse(argc, argv);
-	vars_p.argv_parsed = ft_split(vars_p.nums, ' ');
-	while (vars_p.argv_parsed[vars_p.len])
-		vars_p.len++;
-	if (error(vars_p.len, vars_p.argv_parsed))
+	if (error(argc, argv))
 	{
 		write(1, "ERROR\n", 6);
 		return (0);
 	}
 	init_operations(operations, &groups, argc);
-	data = create_stack_lst(vars_p.len, vars_p.argv_parsed);
+	data = create_stack_lst(argc, argv);
 	vars.group_size = data.size_a / groups;
 	decide_algo(&data, operations, argc, vars);
-	//ft_lstclear2(&data.head_a);
-	//free(data.head_b);
 	return (0);
 }

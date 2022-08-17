@@ -2,7 +2,7 @@ CC=gcc -fsanitize=address -g
 CFLAGS=-Wall -Werror -Wextra -g
 INC_LIB=-Iinlcude/ -I$(LIB_DIR)/
 INC_SRC=-Iinlcude/ -I$(INC_DIR)/
-SRC_NAME=push_swap.c create_stack.c lst_utils.c sort_big.c visual.c checks.c utils.c sort_small.c sort_b_utils.c lst_utils2.c op_shifts.c op_swap_push.c
+SRC_NAME=push_swap.c create_stack.c lst_utils.c sort_big.c visual.c utils.c sort_small.c sort_b_utils.c lst_utils2.c op_shifts.c op_swap_push.c libft_adds.c
 OBJ_NAME=$(SRC_NAME:.c=.o)
 OBJ=$(addprefix $(OBJ_DIR),$(OBJ_NAME))
 SRC=$(addprefix $(SRC_DIR),$(SRC_NAME))

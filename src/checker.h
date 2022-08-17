@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 17:36:24 by tdehne           ###   ########.fr       */
+/*   Created: 2022/08/17 15:28:50 by tdehne            #+#    #+#             */
+/*   Updated: 2022/08/17 15:32:31 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef CHECKER_H
+# define CHECKER_H
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft.h"
@@ -46,12 +46,6 @@ typedef struct s_vars {
 	int	stack_len;
 	int	group_size;
 }	t_vars;
-
-typedef struct s_vars_parse {
-	char		*nums;
-	char		**argv_parsed;
-	int			len;
-}	t_vars_parse;
 
 //übergebe immer nur den struct
 typedef void	(*t_operation) (t_data *data);
@@ -102,9 +96,5 @@ void	sort(t_data *data, t_operation operations[8], int min_index, int rev);
 t_op	get_ops(t_data data, int min_index);
 void	ready_to_push(t_data *data, t_operation operations[8], t_op op, int mi);
 t_op	rotate_b(t_data *data, int m_i);
-
-//libft adds
-char	*parse(int argc, char **argv);
-void	ft_lstclear2(t_list **lst);
 
 #endif

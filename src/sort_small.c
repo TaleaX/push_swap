@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 13:37:15 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 15:16:02 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/17 17:31:10 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void	algo(t_data *data, t_operation operations[8])
 	if (data->size_a == 2 || (data->head_a->index < data->head_a->next->index
 			&& data->head_a->index < data->head_a->next->next->index))
 		op = SWAP_A;
-	if ((data->head_a->index > data->head_a->next->index
+	else if ((data->head_a->index > data->head_a->next->index
 			&& data->head_a->index < data->head_a->next->next->index))
 		op = SWAP_A;
-	if (data->head_a->index > data->head_a->next->index
+	else if (data->head_a->index > data->head_a->next->index
 		&& data->head_a->index > data->head_a->next->next->index)
 		op = SHIFT_UP_A;
-	if (data->head_a->index < data->head_a->next->index
+	else if (data->head_a->index < data->head_a->next->index
 		&& data->head_a->index > data->head_a->next->next->index)
 		op = SHIFT_DOWN_A;
 	operations[op](data);
