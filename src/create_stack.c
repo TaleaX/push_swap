@@ -6,13 +6,13 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:29 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/16 12:48:46 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/17 14:58:00 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void add_index(t_list *head)
+void	add_index(t_list *head)
 {
 	t_list	*greatest;
 	t_list	*smallest;
@@ -50,6 +50,5 @@ t_data	create_stack_lst(int argc, char **argv)
 	add_index(data.head_a);
 	data.size_a = lst_size(data.head_a);
 	data.size_b = 0;
-	data.size_sel = 0;
 	return (data);
 }

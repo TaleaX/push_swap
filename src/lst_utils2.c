@@ -1,49 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks.c                                           :+:      :+:    :+:   */
+/*   lst_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 12:10:19 by tdehne            #+#    #+#             */
-/*   Updated: 2022/06/26 08:32:14 by tdehne           ###   ########.fr       */
+/*   Created: 2022/08/17 15:10:10 by tdehne            #+#    #+#             */
+/*   Updated: 2022/08/17 15:10:22 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(t_list *head)
+void	lst_rm(t_list **head, t_list *lst)
 {
-	int prev_content;
+	t_list	*tmp;
 
-	while (head->next)
+	tmp = *head;
+	if (*head == lst)
+		*head = (*head)->next;
+	else
 	{
-		prev_content = head->content;
-		if (head->next->content < prev_content)
-			return (0);
-		head = head->next;
+		while (tmp->next != lst)
+			tmp = tmp->next;
+		tmp->next = lst->next;
 	}
-	return (1);
 }
 
-int	is_rev_sorted(t_list *head)
+int	lst_size(t_list *lst)
 {
-	int prev_content;
+	size_t	i;
 
-	while (head->next)
+	i = 0;
+	while (lst)
 	{
-		prev_content = head->content;
-		if (head->next->content > prev_content)
-			return (0);
-		head = head->next;
+		lst = lst->next;
+		i++;
 	}
-	return (1);
+	return (i);
 }
-
-/*int	check_input(int len, char **argv)
-{
-	while (len--)
-	{
-
-	}
-}*/

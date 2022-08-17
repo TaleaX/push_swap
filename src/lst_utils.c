@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_utils.c                                       :+:      :+:    :+:   */
+/*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 11:12:58 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/13 22:39:11 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/17 15:13:54 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,90 +58,4 @@ t_list	*lst_getlast(t_list *lst)
 	while (lst->next != NULL)
 		lst = lst->next;
 	return (lst);
-}
-
-void	lst_rm(t_list **head, t_list *lst)
-{
-	t_list	*tmp;
-
-	tmp = *head;
-	if (*head == lst)
-		*head = (*head)->next;
-	else
-	{
-		while (tmp->next != lst)
-			tmp = tmp->next;
-		tmp->next = lst->next;
-	}
-}
-
-int	lst_size(t_list *lst)
-{
-	size_t	i;
-
-	i = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		i++;
-	}
-	return (i);
-}
-
-int	find_sel_node_spot(t_list *head)
-{
-	int	i;
-
-	i = -1;
-	while (head)
-	{
-		i++;
-		if (head->selected)
-			return (i);
-		head = head->next;
-	}
-	return (i);
-}
-
-int	find_node_spot(t_list *head, t_list *to_find)
-{
-	int	counter;
-
-	counter = 0;
-	while (head)
-	{
-		if (head == to_find)
-			break;
-		counter++;
-		head = head->next;
-	}
-	return (counter);
-}
-
-t_list	*lst_get_smallest(t_list *head)
-{
-	t_list	*smallest;
-
-	smallest = head;
-	while (head)
-	{
-		if (head->index < smallest->index)
-			smallest = head;
-		head = head->next;
-	}
-	return (smallest);
-}
-
-t_list	*lst_get_greatest(t_list *head)
-{
-	t_list	*greatest;
-
-	greatest = head;
-	while (head)
-	{
-		if (head->index > greatest->index)
-			greatest = head;
-		head = head->next;
-	}
-	return (greatest);
 }
