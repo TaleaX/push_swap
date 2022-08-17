@@ -6,9 +6,12 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 16:18:46 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 17:50:06 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/17 18:42:48 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+#include <stdio.h>
 
 static long long	pow_of_a(int base, int exp)
 {
@@ -54,7 +57,7 @@ static int	correct_prefix(const char **nptr, int *minus)
 	return (1);
 }
 
-int	ft_atoi(const char *nptr)
+long long	ft_atoi(const char *nptr)
 {
 	long long	result;
 	int			minus;
@@ -63,7 +66,7 @@ int	ft_atoi(const char *nptr)
 	result = 0;
 	minus = 0;
 	if (!correct_prefix(&nptr, &minus))
-		return (0);
+		return (GT_MAX_INT);
 	while (*nptr)
 	{
 		if (*nptr < '0' || *nptr > '9')
@@ -77,12 +80,16 @@ int	ft_atoi(const char *nptr)
 			return (0);*/
 		if (!minus && ((result > 2147483640)
 				|| (result == 2147483640 && *nptr > '7')))
-			return (0);
+			return (GT_MAX_INT);
 		if (minus && ((result > 2147483640)
 				|| (result == 2147483640 && *nptr > '8')))
-			return (0);
+			return (GT_MAX_INT);
 		result += ((*nptr) - '0') * pow_of_a(10, log_10);
 		nptr++;
+	}
+	if (*nptr)
+	{
+		return (GT_MAX_INT);
 	}
 	if (minus)
 		result = result * (-1);

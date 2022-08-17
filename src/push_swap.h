@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 17:36:24 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/17 18:24:19 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "libft.h"
 # define PASS 3
 # define PUSH 4
+# define GT_MAX_INT 2147483648
 
 typedef enum op {
 	SWAP_A,

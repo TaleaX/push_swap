@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 17:49:56 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/17 18:44:59 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 
 int	error(int len, char **argv)
 {
-	int	j;
-	int	num;
-	int	num2;
+	int			j;
+	long long	num;
+	long long	num2;
 
 	while (len--)
 	{
 		num = ft_atoi(*(argv + len));
-		if ((num == 0 && ft_strlen(*(argv + len)) > 2)
-			|| (num == 0 && ft_strlen(*(argv + len)) != 2
-				&& (**(argv + len) > '9' || **(argv + len) < '0')))
+		if (num == GT_MAX_INT)
+		{
 			return (1);
-		j = len - 1;
-		while (j--)
+		}
+		j = len;
+		while (j-- > 0)
 		{
 			num2 = ft_atoi(*(argv + j));
 			if (num == num2)
@@ -93,7 +93,7 @@ int	main(int argc, char **argv)
 	data = create_stack_lst(vars_p.len, vars_p.argv_parsed);
 	vars.group_size = data.size_a / groups;
 	decide_algo(&data, operations, argc, vars);
-	//ft_lstclear2(&data.head_a);
-	//free(data.head_b);
+	ft_lstclear2(&data.head_a);
+	free(data.head_b);
 	return (0);
 }
