@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 16:18:46 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 18:42:48 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 14:51:37 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,6 @@ long long	ft_atoi(const char *nptr)
 		if (*nptr < '0' || *nptr > '9')
 			break ;
 		log_10 = get_log_10(nptr);
-		/*if (!minus && ((result > 922337203685477580)
-				|| (result == 922337203685477580 && *nptr > '7')))
-			return (-1);
-		if (minus && ((result > 922337203685477580)
-				|| (result == 922337203685477580 && *nptr > '8')))
-			return (0);*/
 		if (!minus && ((result > 2147483640)
 				|| (result == 2147483640 && *nptr > '7')))
 			return (GT_MAX_INT);
@@ -88,9 +82,7 @@ long long	ft_atoi(const char *nptr)
 		nptr++;
 	}
 	if (*nptr)
-	{
 		return (GT_MAX_INT);
-	}
 	if (minus)
 		result = result * (-1);
 	return (result);

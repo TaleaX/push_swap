@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:45:18 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 13:54:21 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 14:51:01 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static char	*make_return(char **buf, char *tmp, int found_lb)
 {
 	char	*buf_tmp;
 
+	if (!tmp)
+		return (NULL);
 	if (found_lb)
 	{
 		buf_tmp = ft_strdup((*buf) + lb_index(*buf) + 1);

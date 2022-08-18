@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 16:34:20 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 08:04:17 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 15:35:58 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char	*ft_strjoin_better(char *s1, char *s2)
 	str_concat[i + j] = ' ';
 	str_concat[i + j + 1] = '\0';
 	free(s1);
-	s1 = NULL;
 	return (str_concat);
 }
 

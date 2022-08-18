@@ -6,13 +6,13 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 07:03:18 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 20:04:44 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 17:09:00 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_a(t_data *data, t_operation operations[8])
+void	sort_a(t_data *data, t_operation operations[11])
 {
 	int			min_index;
 	int			counter;
@@ -27,8 +27,6 @@ void	sort_a(t_data *data, t_operation operations[8])
 		ready_to_push(data, operations, op, min_index);
 		operations[PUSH_A](data);
 		print_stack_dev(PUSH_A);
-		data->size_a++;
-		data->size_b--;
 		counter--;
 		sort(data, operations, min_index, 0);
 		if (counter < min_index)
@@ -41,15 +39,13 @@ void	sort_a(t_data *data, t_operation operations[8])
 	}
 }
 
-void	pre_sort_helper(t_data *data, t_operation operations[8], t_vars vars)
+void	pre_sort_helper(t_data *data, t_operation operations[11], t_vars vars)
 {
 	while (data->size_a > 3)
 	{
 		if (data->head_a->index <= vars.max_index
 			&& data->head_a->index < (vars.stack_len - 3))
 		{
-			data->size_b++;
-			data->size_a--;
 			(vars.counter)++;
 			if (vars.counter > vars.max_index)
 				(vars.max_index) += (vars.group_size - 1) * 2;
@@ -70,7 +66,7 @@ void	pre_sort_helper(t_data *data, t_operation operations[8], t_vars vars)
 	}
 }
 
-void	pre_sort_b(t_data *data, t_operation operations[8], t_vars vars)
+void	pre_sort_b(t_data *data, t_operation operations[11], t_vars vars)
 {
 	vars.max_index = (vars.group_size - 1) * 2;
 	vars.counter = 0;
@@ -78,11 +74,14 @@ void	pre_sort_b(t_data *data, t_operation operations[8], t_vars vars)
 	pre_sort_helper(data, operations, vars);
 }
 
-void	sort_big(t_data *data, t_operation operations[8], t_vars vars)
+void	sort_big(t_data *data, t_operation operations[11], t_vars vars)
 {
 	if (!data->head_a)
 		return ;
 	pre_sort_b(data, operations, vars);
 	sort_three(data, operations);
 	sort_a(data, operations);
+	//print_stack(data->head_a, data->head_b, ZERO);
+	/*if (stack_a_sorted(data->head_a))
+		write(1, "YAY\n", 4);*/
 }

@@ -6,13 +6,13 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:08:00 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 15:16:33 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 16:59:34 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_op	rotate_b(t_data *data, int min_i)
+/*t_op	rotate_b(t_data *data, int min_i)
 {
 	t_list	*last;
 
@@ -20,9 +20,9 @@ t_op	rotate_b(t_data *data, int min_i)
 	if (last->index >= min_i)
 		return (SHIFT_DOWN_B);
 	return (ZERO);
-}
+}*/
 
-void	ready_to_push(t_data *data, t_operation operations[8], t_op op, int m_i)
+void	ready_to_push(t_data *data, t_operation operations[11], t_op op, int m_i)
 {
 	while (data->head_b->index < m_i)
 	{
@@ -52,16 +52,24 @@ t_op	get_ops(t_data data, int min_index)
 	return (SHIFT_UP_B);
 }
 
-void	sort(t_data *data, t_operation operations[8], int min_i, int reverse)
+void	sort(t_data *data, t_operation operations[11], int min_i, int reverse)
 {
 	t_op	op;
 
 	if (!data->head_a || !data->head_a->next)
 		return ;
 	if (reverse)
+	{
 		op = SHIFT_DOWN_A;
+		if (data->head_b && get_ops(*data, min_i) == SHIFT_DOWN_B)
+			op = RRR;
+	}
 	else if (data->head_a->index == min_i)
+	{
 		op = SHIFT_UP_A;
+		if (data->head_b && get_ops(*data, min_i) == SHIFT_UP_B)
+			op = RR;
+	}
 	else if (data->head_a->index > data->head_a->next->index)
 		op = SWAP_A;
 	else

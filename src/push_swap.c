@@ -6,75 +6,17 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 08:56:29 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 16:59:02 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-int	error(int len, char **argv)
+int	write_error(void)
 {
-	int			j;
-	long long	num;
-	long long	num2;
-
-	while (len--)
-	{
-		num = ft_atoi(*(argv + len));
-		if (num == GT_MAX_INT)
-		{
-			return (1);
-		}
-		j = len;
-		while (j-- > 0)
-		{
-			num2 = ft_atoi(*(argv + j));
-			if (num == num2)
-				return (1);
-		}
-	}
+	write(2, "ERROR\n", 6);
 	return (0);
-}
-
-void	init_operations(t_operation operations[8], int *groups, int argc)
-{
-	operations[0] = swap_a;
-	operations[1] = swap_b;
-	operations[2] = shift_up_a;
-	operations[3] = shift_up_b;
-	operations[4] = shift_down_a;
-	operations[5] = shift_down_b;
-	operations[6] = push_a;
-	operations[7] = push_b;
-	if (argc >= 500)
-		*groups = 17;
-	else if (argc >= 100)
-		*groups = 9;
-	else if (argc > 50)
-		*groups = 5;
-	else
-		*groups = 1;
-}
-
-void	decide_algo(t_data *data, t_operation operations[8], int len, t_vars v)
-{
-	if (stack_a_sorted(data->head_a))
-		return ;
-	if (len <= 3)
-		sort_three(data, operations);
-	else if (len <= 5)
-		sort_smaller_six(data, operations);
-	else
-		sort_big(data, operations, v);
-}
-
-static void	free_all(char **arr, size_t i)
-{
-	while (i > 0)
-		free(arr[i--]);
-	free(arr[i]);
-	free(arr);
 }
 
 int	main(int argc, char **argv)
@@ -82,23 +24,21 @@ int	main(int argc, char **argv)
 	t_data			data;
 	int				groups;
 	t_vars			vars;
-	t_operation		operations[8];
+	t_operation		operations[11];
 	t_vars_parse	vars_p;
 
 	vars_p.len = 0;
 	if (argc <= 1)
 		return (0);
 	vars_p.nums = parse(argc, argv);
+	if (!vars_p.nums)
+		return (write_error());
 	vars_p.argv_parsed = ft_split(vars_p.nums, ' ');
 	free(vars_p.nums);
 	while (vars_p.argv_parsed[vars_p.len])
 		vars_p.len++;
 	if (error(vars_p.len, vars_p.argv_parsed))
-	{
-		write(3, "ERROR\n", 6);
-		free_all(vars_p.argv_parsed, vars_p.len);
-		return (0);
-	}
+		return (write_error());
 	init_operations(operations, &groups, argc);
 	data = create_stack_lst(vars_p.len, vars_p.argv_parsed);
 	free_all(vars_p.argv_parsed, vars_p.len);

@@ -6,13 +6,13 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 13:37:15 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 17:31:10 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 16:59:34 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	algo(t_data *data, t_operation operations[8])
+static void	algo(t_data *data, t_operation operations[11])
 {
 	t_op	op;
 
@@ -50,13 +50,13 @@ static t_op	ra_or_rra(t_data data, int max_real_i)
 	return (SHIFT_DOWN_A);
 }
 
-void	sort_three(t_data *data, t_operation operations[8])
+void	sort_three(t_data *data, t_operation operations[11])
 {
 	while (!stack_a_sorted(data->head_a))
 		algo(data, operations);
 }
 
-void	sort_smaller_six(t_data *data, t_operation operations[8])
+void	sort_smaller_six(t_data *data, t_operation operations[11])
 {
 	t_op	op;
 
@@ -64,11 +64,7 @@ void	sort_smaller_six(t_data *data, t_operation operations[8])
 	{
 		op = ra_or_rra(*data, 1);
 		if (data->head_a->index == 0 || data->head_a->index == 1)
-		{
 			op = PUSH_B;
-			data->size_a--;
-			data->size_b++;
-		}
 		operations[op](data);
 		print_stack_dev(op);
 	}

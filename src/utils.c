@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 16:52:09 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 14:59:07 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 16:07:30 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,12 @@ t_list	*get_next_smallest_node(t_list *head_a, t_list *prev_smallest)
 		head_a = head_a->next;
 	}
 	return (prev_smallest);
+}
+
+void	free_all(char **arr, size_t i)
+{
+	while (i > 0)
+		free(arr[i--]);
+	free(arr[i]);
+	free(arr);
 }

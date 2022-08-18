@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 12:17:11 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 09:01:29 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 17:06:25 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ void	print_stack(t_list *head_a, t_list *head_b, t_op OP)
 		write(1, "rrb\n", 4);
 	else if (OP == RRR)
 		write(1, "rrr\n", 4);
-	printf("a: ");
+	printf("\na: ");
 	while (head_a)
 	{
-		printf("%d ", head_a->content);
+		printf("%d[%d] ", head_a->content, head_a->index);
 		head_a = head_a->next;
 	}
 	printf("\nb: ");
