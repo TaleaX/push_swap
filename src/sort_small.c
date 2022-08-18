@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 13:37:15 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 16:59:34 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 17:53:20 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,16 @@ void	sort_smaller_six(t_data *data, t_operation operations[11])
 		print_stack_dev(op);
 	}
 	sort_three(data, operations);
-	if (data->head_b->index < data->head_b->next->index)
+	if (data->head_b->next && data->head_b->index < data->head_b->next->index)
 	{
 		operations[SWAP_B](data);
 		print_stack_dev(SWAP_B);
 	}
 	operations[PUSH_A](data);
 	print_stack_dev(PUSH_A);
-	operations[PUSH_A](data);
-	print_stack_dev(PUSH_A);
+	if (data->head_b)
+	{
+		operations[PUSH_A](data);
+		print_stack_dev(PUSH_A);
+	}
 }
