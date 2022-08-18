@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 16:34:20 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 17:36:03 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 08:04:17 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	*ft_strdup2(const char *s)
 	return (arr);
 }
 
-static char	*ft_strjoin_better(char *s1, char *s2)
+char	*ft_strjoin_better(char *s1, char *s2)
 {
 	char	*str_concat;
 	int		i;
@@ -61,20 +61,6 @@ static char	*ft_strjoin_better(char *s1, char *s2)
 	return (str_concat);
 }
 
-char	*parse(int argc, char **argv)
-{
-	char	*nums;
-	int		i;
-
-	i = 1;
-	nums = ft_strjoin_better(NULL, *(argv + i));
-	while (++i < argc)
-	{
-		nums = ft_strjoin_better(nums, *(argv + i));
-	}
-	return (nums);
-}
-
 void	ft_lstclear2(t_list **lst)
 {
 	t_list	*tmp;
@@ -84,7 +70,7 @@ void	ft_lstclear2(t_list **lst)
 	{
 		tmp = *lst;
 		*lst = (*lst)->next;
-		free(*lst);
+		free(tmp);
 	}
 	*lst = NULL;
 }

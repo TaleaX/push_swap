@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 07:03:18 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 15:16:02 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/17 20:04:44 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,6 @@ void	pre_sort_b(t_data *data, t_operation operations[8], t_vars vars)
 
 void	sort_big(t_data *data, t_operation operations[8], t_vars vars)
 {
-	t_op	op;
-
-	op = PUSH_B;
 	if (!data->head_a)
 		return ;
 	pre_sort_b(data, operations, vars);

@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 18:24:19 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 08:52:22 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,7 @@ t_op	rotate_b(t_data *data, int m_i);
 //libft adds
 char	*parse(int argc, char **argv);
 void	ft_lstclear2(t_list **lst);
+char	*ft_strjoin_better(char *s1, char *s2);
 
+void	print_stack(t_list *head_a, t_list *head_b, t_op OP);
 #endif

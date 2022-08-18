@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:28:50 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 15:32:31 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 08:37:18 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ typedef struct s_vars {
 	int	stack_len;
 	int	group_size;
 }	t_vars;
+
+typedef struct s_vars_parse {
+	char		*nums;
+	char		*exec_push_swap;
+	char		**argv_parsed;
+	int			len;
+}	t_vars_parse;
 
 //übergebe immer nur den struct
 typedef void	(*t_operation) (t_data *data);
@@ -96,5 +103,13 @@ void	sort(t_data *data, t_operation operations[8], int min_index, int rev);
 t_op	get_ops(t_data data, int min_index);
 void	ready_to_push(t_data *data, t_operation operations[8], t_op op, int mi);
 t_op	rotate_b(t_data *data, int m_i);
+
+//libft adds
+char	*parse(int argc, char **argv);
+void	ft_lstclear2(t_list **lst);
+char	*ft_strjoin_better(char *s1, char *s2);
+
+//get next line
+char	*get_next_line(int fd);
 
 #endif

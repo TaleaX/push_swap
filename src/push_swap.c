@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 18:44:59 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 08:56:29 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,24 @@ void	init_operations(t_operation operations[8], int *groups, int argc)
 		*groups = 1;
 }
 
-void	decide_algo(t_data *data, t_operation operations[8], int argc, t_vars v)
+void	decide_algo(t_data *data, t_operation operations[8], int len, t_vars v)
 {
 	if (stack_a_sorted(data->head_a))
 		return ;
-	if (argc <= 4)
+	if (len <= 3)
 		sort_three(data, operations);
-	else if (argc <= 6)
+	else if (len <= 5)
 		sort_smaller_six(data, operations);
 	else
 		sort_big(data, operations, v);
+}
+
+static void	free_all(char **arr, size_t i)
+{
+	while (i > 0)
+		free(arr[i--]);
+	free(arr[i]);
+	free(arr);
 }
 
 int	main(int argc, char **argv)
@@ -82,17 +90,20 @@ int	main(int argc, char **argv)
 		return (0);
 	vars_p.nums = parse(argc, argv);
 	vars_p.argv_parsed = ft_split(vars_p.nums, ' ');
+	free(vars_p.nums);
 	while (vars_p.argv_parsed[vars_p.len])
 		vars_p.len++;
 	if (error(vars_p.len, vars_p.argv_parsed))
 	{
-		write(1, "ERROR\n", 6);
+		write(3, "ERROR\n", 6);
+		free_all(vars_p.argv_parsed, vars_p.len);
 		return (0);
 	}
 	init_operations(operations, &groups, argc);
 	data = create_stack_lst(vars_p.len, vars_p.argv_parsed);
+	free_all(vars_p.argv_parsed, vars_p.len);
 	vars.group_size = data.size_a / groups;
-	decide_algo(&data, operations, argc, vars);
+	decide_algo(&data, operations, vars_p.len, vars);
 	ft_lstclear2(&data.head_a);
 	free(data.head_b);
 	return (0);
