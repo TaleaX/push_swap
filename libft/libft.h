@@ -6,14 +6,18 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 14:06:22 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 18:22:15 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 12:25:35 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stdlib.h>
+# include <unistd.h>
 # define  GT_MAX_INT 2147483648
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 typedef struct s_list
 {
@@ -67,5 +71,8 @@ void		ft_lstdelone(t_list *lst, void (*del)(int));
 void		ft_lstclear(t_list **lst, void (*del)(int));
 void		ft_lstiter(t_list *lst, void (*f)(int));
 //t_list	*ft_lstmap(t_list *lst, int (*f)(int), void (*del)(int));
+
+//get next line
+char		*get_next_line(int fd);
 
 #endif

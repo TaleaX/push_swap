@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:28:50 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 08:37:18 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 13:20:21 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft.h"
+# define ERROR -1
 # define PASS 3
 # define PUSH 4
+# define GT_MAX_INT 2147483648
 
 typedef enum op {
 	SWAP_A,
@@ -31,6 +33,7 @@ typedef enum op {
 	RR,
 	RRR,
 	ZERO,
+	EXEC
 }	t_op;
 
 typedef struct s_data {
@@ -49,7 +52,6 @@ typedef struct s_vars {
 
 typedef struct s_vars_parse {
 	char		*nums;
-	char		*exec_push_swap;
 	char		**argv_parsed;
 	int			len;
 }	t_vars_parse;
@@ -109,7 +111,6 @@ char	*parse(int argc, char **argv);
 void	ft_lstclear2(t_list **lst);
 char	*ft_strjoin_better(char *s1, char *s2);
 
-//get next line
-char	*get_next_line(int fd);
+void	print_stack(t_list *head_a, t_list *head_b, t_op OP);
 
 #endif
