@@ -1,4 +1,4 @@
-CC=gcc -fsanitize=address -g
+CC=gcc #-fsanitize=address -g
 CFLAGS=-Wall -Werror -Wextra -g
 INC_LIB=-Iinlcude/ -I$(LIB_DIR)/
 INC_SRC=-Iinlcude/ -I$(INC_DIR)/

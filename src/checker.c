@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:32:58 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 17:17:40 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 18:27:45 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 {
 	t_data			data;
 	int				groups;
-	t_operation		operations[8];
+	t_operation		operations[11];
 	t_vars_parse	vars_p;
 
 	vars_p.len = 0;

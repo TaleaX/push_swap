@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:18:28 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 16:56:09 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 18:12:34 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	shift_up_a(t_data *data)
 {
 	t_list	*first;
 
+	if (!data->head_a)
+		return ;
 	first = data->head_a;
 	lst_rm(&data->head_a, data->head_a);
 	first->next = NULL;
@@ -26,6 +28,8 @@ void	shift_up_b(t_data *data)
 {
 	t_list	*first;
 
+	if (!data->head_b)
+		return ;
 	first = data->head_b;
 	lst_rm(&data->head_b, data->head_b);
 	first->next = NULL;
@@ -36,6 +40,8 @@ void	shift_down_a(t_data *data)
 {
 	t_list	*last;
 
+	if (!data->head_a)
+		return ;
 	last = lst_getlast(data->head_a);
 	lst_rm(&data->head_a, last);
 	lst_add_front(&data->head_a, last);
@@ -45,6 +51,8 @@ void	shift_down_b(t_data *data)
 {
 	t_list	*last;
 
+	if (!data->head_b)
+		return ;
 	last = lst_getlast(data->head_b);
 	lst_rm(&data->head_b, last);
 	lst_add_front(&data->head_b, last);

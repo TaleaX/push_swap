@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:04:46 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 16:55:47 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 18:07:00 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	push_b(t_data *data)
 {
 	t_list	*first;
 
+	if (!data->head_a)
+		return ;
 	first = data->head_a;
 	lst_rm(&data->head_a, data->head_a);
 	lst_add_front(&data->head_b, first);
@@ -61,6 +63,8 @@ void	push_a(t_data *data)
 {
 	t_list	*first;
 
+	if (!data->head_b)
+		return ;
 	first = data->head_b;
 	lst_rm(&data->head_b, data->head_b);
 	lst_add_front(&data->head_a, first);

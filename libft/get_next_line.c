@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:45:18 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 14:51:01 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 17:34:43 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	*get_next_line(int fd)
 	static char		*buf;
 	char			*tmp;
 
-	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || fd > 1024)
+	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	if (!buf)
 		buf = (char *)ft_calloc((BUFFER_SIZE + 1), sizeof(char));

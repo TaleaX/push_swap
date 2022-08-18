@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 14:27:20 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 17:17:29 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/18 18:11:12 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	exec(t_data *data, t_operation operations[11])
 	while (input != NULL)
 	{
 		op = get_inp_op(input);
-		if (op == ZERO)
+		if (op == ZERO || check_for_errors(data, op))
 		{
 			write(2, "ERROR\n", 6);
 			ft_lstclear2(&data->head_a);
@@ -91,7 +91,7 @@ int	exec(t_data *data, t_operation operations[11])
 		}
 		if (check_special_ops(data, operations, op))
 		{
-			input = get_next_line(1);
+			input = get_next_line(0);
 			continue ;
 		}
 		operations[op](data);
