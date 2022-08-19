@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:45:18 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 17:34:43 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/19 15:58:17 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,11 @@ static char	*make_return(char **buf, char *tmp, int found_lb)
 	char	*buf_tmp;
 
 	if (!tmp)
+	{
+		free(*buf);
+		*buf = NULL;
 		return (NULL);
+	}
 	if (found_lb)
 	{
 		buf_tmp = ft_strdup((*buf) + lb_index(*buf) + 1);
@@ -74,14 +78,10 @@ static char	*make_return(char **buf, char *tmp, int found_lb)
 	else
 	{
 		if (*buf)
-		{
 			free(*buf);
-			*buf = NULL;
-		}
 		buf_tmp = ft_substr(tmp, 0, ft_strlen(tmp));
 	}
 	free(tmp);
-	tmp = NULL;
 	return (buf_tmp);
 }
 

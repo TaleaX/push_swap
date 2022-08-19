@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 07:03:18 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/19 15:01:09 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/19 15:32:49 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,5 @@ void	sort_big(t_data *data, t_operation operations[11], t_vars vars)
 	pre_sort_b(data, operations, vars);
 	sort_three(data, operations);
 	sort_a(data, operations);
+	print_stack(data->head_a, data->head_a, ZERO);
 }

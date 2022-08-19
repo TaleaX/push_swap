@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 16:59:02 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/19 15:35:52 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int argc, char **argv)
 	free_all(vars_p.argv_parsed, vars_p.len);
 	vars.group_size = data.size_a / groups;
 	decide_algo(&data, operations, vars_p.len, vars);
+	print_stack(data.head_a, data.head_a, ZERO);
 	ft_lstclear2(&data.head_a);
 	free(data.head_b);
 	return (0);

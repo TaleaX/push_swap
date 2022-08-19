@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:28:50 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 16:59:34 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/19 15:28:16 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	sort_a(t_data *data, t_operation operations[11]);
 //sort big utils
 void	sort(t_data *data, t_operation operations[11], int min_index, int rev);
 t_op	get_ops(t_data data, int min_index);
-void	ready_to_push(t_data *data, t_operation operations[11], t_op op, int mi);
+void	ready_to_push(t_data *data, t_operation operations[11], t_op op, int i);
 t_op	rotate_b(t_data *data, int m_i);
 
 //libft adds
@@ -111,7 +111,7 @@ char	*ft_strjoin_better(char *s1, char *s2);
 // init
 int		error(int len, char **argv_parsed);
 void	init_operations(t_operation operations[11], int *groups, int argc);
-void	decide_algo(t_data *data, t_operation operations[11], int len, t_vars v);
+void	decide_algo(t_data *data, t_operation operations[11], int l, t_vars v);
 char	*parse(int argc, char **argv);
 
 //checker utils
