@@ -6,25 +6,15 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:08:00 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 17:43:53 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/19 14:57:44 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_op	rotate_b(t_data *data, int min_i)
+void	ready_to_push(t_data *data, t_operation operations[11], t_op op, int i)
 {
-	t_list	*last;
-
-	last = lst_getlast(data->head_b);
-	if (last->index >= min_i)
-		return (SHIFT_DOWN_B);
-	return (ZERO);
-}
-
-void	ready_to_push(t_data *data, t_operation operations[11], t_op op, int m_i)
-{
-	while (data->head_b->index < m_i)
+	while (data->head_b->index < i)
 	{
 		operations[op](data);
 		print_stack_dev(op);

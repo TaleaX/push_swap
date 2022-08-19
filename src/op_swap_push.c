@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:04:46 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 18:07:00 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/19 15:00:53 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,6 @@ void	swap_b(t_data *data)
 	data->head_b->next->next = data->head_b;
 	data->head_b->next = tmp_next_next;
 	data->head_b = tmp_next;
-}
-
-void	swap_both(t_data *data)
-{
-	swap_a(data);
-	swap_b(data);
 }
 
 void	push_b(t_data *data)

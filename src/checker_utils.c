@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 14:27:20 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 18:34:01 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/19 14:58:13 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ int	exec(t_data *data, t_operation operations[11])
 			ft_lstclear2(&data->head_b);
 			return (ERROR);
 		}
+		free(input);
 		if (check_special_ops(data, operations, op))
 		{
 			input = get_next_line(0);
 			continue ;
 		}
 		operations[op](data);
-		free(input);
 		input = get_next_line(0);
 	}
 	return (1);
