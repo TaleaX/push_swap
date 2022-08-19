@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 16:18:46 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 14:51:37 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/19 15:04:54 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,17 @@ static int	correct_prefix(const char **nptr, int *minus)
 	return (1);
 }
 
+int	check_int_max(int minus, int result, const char *nptr)
+{
+	if (!minus && ((result > 2147483640)
+			|| (result == 2147483640 && *nptr > '7')))
+		return (1);
+	if (minus && ((result > 2147483640)
+			|| (result == 2147483640 && *nptr > '8')))
+		return (1);
+	return (0);
+}
+
 long long	ft_atoi(const char *nptr)
 {
 	long long	result;
@@ -72,11 +83,7 @@ long long	ft_atoi(const char *nptr)
 		if (*nptr < '0' || *nptr > '9')
 			break ;
 		log_10 = get_log_10(nptr);
-		if (!minus && ((result > 2147483640)
-				|| (result == 2147483640 && *nptr > '7')))
-			return (GT_MAX_INT);
-		if (minus && ((result > 2147483640)
-				|| (result == 2147483640 && *nptr > '8')))
+		if (check_int_max(minus, result, nptr))
 			return (GT_MAX_INT);
 		result += ((*nptr) - '0') * pow_of_a(10, log_10);
 		nptr++;
