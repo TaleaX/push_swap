@@ -6,12 +6,11 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/19 15:35:52 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/21 11:44:14 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int	write_error(void)
 {
@@ -30,11 +29,9 @@ int	main(int argc, char **argv)
 	vars_p.len = 0;
 	if (argc <= 1)
 		return (0);
-	vars_p.nums = parse(argc, argv);
 	if (!vars_p.nums)
 		return (write_error());
-	vars_p.argv_parsed = ft_split(vars_p.nums, ' ');
-	free(vars_p.nums);
+	parse(argc, argv, &vars_p);
 	while (vars_p.argv_parsed[vars_p.len])
 		vars_p.len++;
 	if (error(vars_p.len, vars_p.argv_parsed))
@@ -44,7 +41,6 @@ int	main(int argc, char **argv)
 	free_all(vars_p.argv_parsed, vars_p.len);
 	vars.group_size = data.size_a / groups;
 	decide_algo(&data, operations, vars_p.len, vars);
-	print_stack(data.head_a, data.head_a, ZERO);
 	ft_lstclear2(&data.head_a);
 	free(data.head_b);
 	return (0);

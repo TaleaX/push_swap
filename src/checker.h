@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:28:50 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/19 15:28:16 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/21 11:37:40 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ char	*ft_strjoin_better(char *s1, char *s2);
 int		error(int len, char **argv_parsed);
 void	init_operations(t_operation operations[11], int *groups, int argc);
 void	decide_algo(t_data *data, t_operation operations[11], int l, t_vars v);
-char	*parse(int argc, char **argv);
+void	parse(int argc, char **argv, t_vars_parse *vars_p);
 
 //checker utils
 void	print_result(t_data data);

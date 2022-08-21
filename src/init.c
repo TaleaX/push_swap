@@ -6,12 +6,11 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 14:11:48 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/18 16:59:34 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/21 11:43:51 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int	error(int len, char **argv_parsed)
 {
@@ -100,7 +99,7 @@ int	only_white_space(int argc, char **argv)
 	return (0);
 }
 
-char	*parse(int argc, char **argv)
+void	parse(int argc, char **argv, t_vars_parse *vars_p)
 {
 	char	*nums;
 	int		i;
@@ -111,5 +110,5 @@ char	*parse(int argc, char **argv)
 	{
 		nums = ft_strjoin_better(nums, *(argv + i));
 	}
-	return (nums);
+	vars_p->argv_parsed = ft_split(nums, ' ');
 }
