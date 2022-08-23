@@ -6,7 +6,7 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/21 11:37:48 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/22 13:55:32 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_vars {
 }	t_vars;
 
 typedef struct s_vars_parse {
-	char		*nums;
 	char		**argv_parsed;
 	int			len;
 }	t_vars_parse;
@@ -111,11 +110,13 @@ void	ft_lstclear2(t_list **lst);
 char	*ft_strjoin_better(char *s1, char *s2);
 
 // init
-int		error(int len, char **argv_parsed);
 void	init_operations(t_operation operations[11], int *groups, int argc);
 void	decide_algo(t_data *data, t_operation operations[11], int l, t_vars v);
 void	parse(int argc, char **argv, t_vars_parse *vars_p);
 
-void	print_stack(t_list *head_a, t_list *head_b, t_op OP);
+//error
+int		write_error(void);
+int		only_white_space(int argc, char **argv);
+int		error(int len, char **argv_parsed);
 
 #endif

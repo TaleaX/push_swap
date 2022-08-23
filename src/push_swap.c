@@ -6,17 +6,11 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:08:53 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/21 11:44:14 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/22 14:10:34 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	write_error(void)
-{
-	write(2, "ERROR\n", 6);
-	return (0);
-}
 
 int	main(int argc, char **argv)
 {
@@ -29,7 +23,7 @@ int	main(int argc, char **argv)
 	vars_p.len = 0;
 	if (argc <= 1)
 		return (0);
-	if (!vars_p.nums)
+	if (only_white_space(argc, argv))
 		return (write_error());
 	parse(argc, argv, &vars_p);
 	while (vars_p.argv_parsed[vars_p.len])

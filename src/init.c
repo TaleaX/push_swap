@@ -6,39 +6,11 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 14:11:48 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/21 11:43:51 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/22 13:54:00 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	error(int len, char **argv_parsed)
-{
-	int			j;
-	int			error;
-	int			len_tmp;
-	long long	num;
-	long long	num2;
-
-	error = 0;
-	len_tmp = len;
-	while (len_tmp--)
-	{
-		num = ft_atoi(*(argv_parsed + len_tmp));
-		if (num == GT_MAX_INT)
-			error = 1;
-		j = len_tmp;
-		while (j-- > 0)
-		{
-			num2 = ft_atoi(*(argv_parsed + j));
-			if (num == num2)
-				error = 1;
-		}
-	}
-	if (error == 1)
-		free_all(argv_parsed, len);
-	return (error);
-}
 
 void	init_operations(t_operation operations[11], int *groups, int argc)
 {
@@ -75,30 +47,6 @@ void	decide_algo(t_data *data, t_operation operations[11], int len, t_vars v)
 		sort_big(data, operations, v);
 }
 
-int	only_white_space(int argc, char **argv)
-{
-	int		i;
-	int		j;
-	int		found;
-
-	i = 1;
-	while (i < argc)
-	{
-		j = 0;
-		found = 0;
-		while (argv[i][j])
-		{
-			if (argv[i][j] != ' ')
-				found = 1;
-			j++;
-		}
-		if (!found)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 void	parse(int argc, char **argv, t_vars_parse *vars_p)
 {
 	char	*nums;
@@ -107,8 +55,7 @@ void	parse(int argc, char **argv, t_vars_parse *vars_p)
 	i = 1;
 	nums = ft_strjoin_better(NULL, *(argv + i));
 	while (++i < argc)
-	{
 		nums = ft_strjoin_better(nums, *(argv + i));
-	}
 	vars_p->argv_parsed = ft_split(nums, ' ');
+	free(nums);
 }

@@ -6,12 +6,11 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 16:18:46 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/19 15:04:54 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/22 14:50:36 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static long long	pow_of_a(int base, int exp)
 {
@@ -57,7 +56,7 @@ static int	correct_prefix(const char **nptr, int *minus)
 	return (1);
 }
 
-int	check_int_max(int minus, int result, const char *nptr)
+int	check_int_max(int minus, long long result, const char *nptr)
 {
 	if (!minus && ((result > 2147483640)
 			|| (result == 2147483640 && *nptr > '7')))
