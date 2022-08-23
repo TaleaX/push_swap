@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   op_both.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/26 15:51:46 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 16:20:31 by tdehne           ###   ########.fr       */
+/*   Created: 2022/08/19 15:00:16 by tdehne            #+#    #+#             */
+/*   Updated: 2022/08/19 15:01:00 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-char	*ft_strdup(const char *s)
+void	shift_up_both(t_data *data)
 {
-	char	*arr;
-	int		i;
+	shift_up_a(data);
+	shift_up_b(data);
+}
 
-	arr = (char *) malloc(sizeof(char) * ft_strlen(s) + 1);
-	if (!arr)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		arr[i] = s[i];
-		i++;
-	}
-	arr[i] = '\0';
-	return (arr);
+void	shift_down_both(t_data *data)
+{
+	shift_down_a(data);
+	shift_down_b(data);
+}
+
+void	swap_both(t_data *data)
+{
+	swap_a(data);
+	swap_b(data);
 }

@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   lst_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/26 15:51:46 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/17 16:20:31 by tdehne           ###   ########.fr       */
+/*   Created: 2022/08/17 15:10:10 by tdehne            #+#    #+#             */
+/*   Updated: 2022/08/17 15:10:22 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-char	*ft_strdup(const char *s)
+void	lst_rm(t_list **head, t_list *lst)
 {
-	char	*arr;
-	int		i;
+	t_list	*tmp;
 
-	arr = (char *) malloc(sizeof(char) * ft_strlen(s) + 1);
-	if (!arr)
-		return (NULL);
-	i = 0;
-	while (s[i])
+	tmp = *head;
+	if (*head == lst)
+		*head = (*head)->next;
+	else
 	{
-		arr[i] = s[i];
+		while (tmp->next != lst)
+			tmp = tmp->next;
+		tmp->next = lst->next;
+	}
+}
+
+int	lst_size(t_list *lst)
+{
+	size_t	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
 		i++;
 	}
-	arr[i] = '\0';
-	return (arr);
+	return (i);
 }

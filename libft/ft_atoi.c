@@ -6,9 +6,11 @@
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 16:18:46 by tdehne            #+#    #+#             */
-/*   Updated: 2022/04/08 12:19:40 by tdehne           ###   ########.fr       */
+/*   Updated: 2022/08/22 14:50:36 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 static long long	pow_of_a(int base, int exp)
 {
@@ -54,7 +56,18 @@ static int	correct_prefix(const char **nptr, int *minus)
 	return (1);
 }
 
-int	ft_atoi(const char *nptr)
+int	check_int_max(int minus, long long result, const char *nptr)
+{
+	if (!minus && ((result > 2147483640)
+			|| (result == 2147483640 && *nptr > '7')))
+		return (1);
+	if (minus && ((result > 2147483640)
+			|| (result == 2147483640 && *nptr > '8')))
+		return (1);
+	return (0);
+}
+
+long long	ft_atoi(const char *nptr)
 {
 	long long	result;
 	int			minus;
@@ -63,21 +76,19 @@ int	ft_atoi(const char *nptr)
 	result = 0;
 	minus = 0;
 	if (!correct_prefix(&nptr, &minus))
-		return (0);
+		return (GT_MAX_INT);
 	while (*nptr)
 	{
 		if (*nptr < '0' || *nptr > '9')
 			break ;
 		log_10 = get_log_10(nptr);
-		if (!minus && ((result > 922337203685477580)
-				|| (result == 922337203685477580 && *nptr > '7')))
-			return (-1);
-		if (minus && ((result > 922337203685477580)
-				|| (result == 922337203685477580 && *nptr > '8')))
-			return (0);
+		if (check_int_max(minus, result, nptr))
+			return (GT_MAX_INT);
 		result += ((*nptr) - '0') * pow_of_a(10, log_10);
 		nptr++;
 	}
+	if (*nptr)
+		return (GT_MAX_INT);
 	if (minus)
 		result = result * (-1);
 	return (result);

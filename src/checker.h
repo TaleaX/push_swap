@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdehne <tdehne@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 19:49:47 by tdehne            #+#    #+#             */
-/*   Updated: 2022/08/22 13:55:32 by tdehne           ###   ########.fr       */
+/*   Created: 2022/08/17 15:28:50 by tdehne            #+#    #+#             */
+/*   Updated: 2022/08/22 14:14:02 by tdehne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef CHECKER_H
+# define CHECKER_H
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft.h"
@@ -33,6 +33,7 @@ typedef enum op {
 	RR,
 	RRR,
 	ZERO,
+	EXEC
 }	t_op;
 
 typedef struct s_data {
@@ -69,9 +70,6 @@ void	swap_a(t_data *data);
 void	swap_b(t_data *data);
 void	push_b(t_data *data);
 void	push_a(t_data *data);
-void	shift_down_both(t_data *data);
-void	shift_up_both(t_data *data);
-void	swap_both(t_data *data);
 
 //lst utils
 t_list	*lst_new(int content, int selected, int index);
@@ -114,9 +112,16 @@ void	init_operations(t_operation operations[11], int *groups, int argc);
 void	decide_algo(t_data *data, t_operation operations[11], int l, t_vars v);
 void	parse(int argc, char **argv, t_vars_parse *vars_p);
 
+//checker utils
+void	print_result(t_data data);
+int		exec(t_data *data, t_operation operations[11]);
+int		check_for_errors(t_data *data, t_op op);
+int		check_special_ops(t_data *data, t_operation operations[11], t_op op);
+t_op	get_inp_op(char *input);
+
 //error
 int		write_error(void);
-int		only_white_space(int argc, char **argv);
 int		error(int len, char **argv_parsed);
+int		only_white_space(int argc, char **argv);
 
 #endif
